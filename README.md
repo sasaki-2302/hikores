@@ -1,24 +1,40 @@
-# README
+# ひこれす　-引っ越しレスキュー-
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+### サイトテーマ
+引っ越し先の地域を決める際の指標になるコミュニティサイト
 
-Things you may want to cover:
+### テーマを選んだ理由
+自分が引越し先を選ぶ際に、いつも悩んでいる経験からこのテーマに決定しました。
+このテーマに該当するサイトはなかったので、独自性のあるテーマとして周りと差別化を図っていきます。
+本題に入りますが、引越し先を選ぶ基準は人それぞれあると思います。
+会社から近い場所を選んだり、家賃との兼ね合いで場所を考えたり、最近だとリモートワークを推奨している会社ならあえて都会から離れた場所に住む等。
+こんなプラスな制度があるなら引っ越したい、逆にこんなマイナス面があると知っていれば引っ越さなかった、誰しも悩んだ経験があるはずです。
+このサイトはユーザー投稿型の地域情報を共有するサイトであり、その地域が引っ越し先として自分に向いているのかを見極める指標になればという思いで作りました。
 
-* Ruby version
+### ターゲットユーザー
+- 今、引っ越しを考えている方
+- これから引っ越す場所を考える方
 
-* System dependencies
+### 主な利用シーン
+- 引越し先の雰囲気を知りたい時
+- 得する制度があるかを知りたい時
+- あまり知名度は無いが暮らしやすい場所を探す時
 
-* Configuration
+## 設計書
+- ER図
+https://drive.google.com/file/d/1xO2jV1y5cHltQOdC5W9YV57ZvXbkAuGJ/view?usp=share_link
 
-* Database creation
+- テーブル定義書
+https://docs.google.com/spreadsheets/d/1fnoCHRZmGs7c9PF9E5lPHbqMQi3vGC6xp5AcbgmUFDo/edit?usp=share_link
 
-* Database initialization
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 使用素材
+- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
+- 使用しない場合は、使用素材の項目をREADMEから削除してください。
