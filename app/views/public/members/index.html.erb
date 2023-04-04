@@ -15,9 +15,9 @@
         <td><%= member.email %></td>
         <td>
           <% if current_member.following?(member) %>
-            <%= button_to "リフォロー", member_relationships_path(member.id), method: :delete %>
+            <%= link_to "リフォロー", member_relationships_path(member.id), method: :delete %>
           <% else %>
-            <%= button_to "フォロー", member_relationships_path(member.id), method: :post %>
+            <%= link_to "フォロー", member_relationships_path(member.id), method: :post %>
           <% end %>
         </td>
       </tr>
