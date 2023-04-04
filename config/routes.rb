@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   # scopeにすることでURLにpublicを含まない
   scope module: :public do
     root to: 'homes#top'
-    resources :posts,   except: [:new]
+    resources :posts
     resources :chats,   only: [:create, :show]
     get 'homes/about'
     get 'relationships/followings'
