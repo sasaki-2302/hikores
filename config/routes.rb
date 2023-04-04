@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'members/index'
+    get 'members/show'
+    get 'members/edit'
+  end
   # namespaceにすることでURLにadminを含む
   namespace :admin do
     root to: 'homes#top'
@@ -10,9 +15,13 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     resources :posts
     resources :chats,   only: [:create, :show]
+    # relationshipsはmemberモデルにネストする
+    resources :members, only: [:index, :show, :edit] do
+      resource :relationships, only: [:create, :destroy]
+      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'followers' => 'relationships#followers', as: 'followers'
+    end
     get 'homes/about'
-    get 'relationships/followings'
-    get 'relationships/followers'
   end
 
   # 顧客用
