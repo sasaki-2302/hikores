@@ -1,10 +1,7 @@
 class Public::PostsController < ApplicationController
-  def new
-    @post = Post.new
-  end
-
   def index
     @posts = Post.all
+    @post = Post.new
   end
 
   def create
@@ -31,6 +28,9 @@ class Public::PostsController < ApplicationController
   end
 
   def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to posts_path
   end
 
   private

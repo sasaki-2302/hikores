@@ -1,0 +1,11 @@
+<div class="form-group">
+  <%= form_with model: post do |f| %>
+    <h5>都道府県名</h5>
+    <%= f.text_field :prefecture_id %><br>
+    <h5>タイトル</h5>
+    <%= f.text_field :title %><br>
+    <h5>内容</h5>
+    <%= f.text_area :body %><br>
+    <%= f.submit %>
+  <% end %>
+</div>

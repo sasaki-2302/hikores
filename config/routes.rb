@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   # scopeにすることでURLにpublicを含まない
   scope module: :public do
     root to: 'homes#top'
-    resources :posts
+    resources :posts,   except: [:new]
     resources :chats,   only: [:create, :show]
     # relationshipsはmemberモデルにネストする
     resources :members, only: [:index, :show, :edit] do

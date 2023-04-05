@@ -1,2 +1,18 @@
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
+<table>
+  <thead>
+    <tr>
+      <th>投稿ユーザー</th>
+      <th>投稿タイトル</th>
+      <th>投稿内容</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><%= link_to @post.member.name, member_path(@post.member_id) %></td>
+        <td><%= link_to @post.title, post_path(@post.id) %></td>
+        <td><%= @post.body %></td>
+        <td><%= link_to "編集", edit_post_path(@post) %></td>
+        <td><%= link_to "削除", @post, method: :delete %></td>
+      </tr>
+  </tbody>
+</table>
