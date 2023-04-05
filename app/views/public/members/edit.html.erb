@@ -1,2 +1,11 @@
-<h1>Public::Members#edit</h1>
-<p>Find me in app/views/public/members/edit.html.erb</p>
+<div class="form-group">
+  <%= form_with model: @member do |f| %>
+    <%= f.label :"プロフィール画像" %><br>
+    <%= f.file_field :profile_image, accept: "image/*" %><br>
+    <h5>ユーザー名</h5>
+    <%= f.text_field :name %><br>
+    <h5>内容</h5>
+    <%= f.text_field :email %><br>
+    <%= f.submit %>
+  <% end %>
+</div>

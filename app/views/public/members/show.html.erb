@@ -1,2 +1,21 @@
-<h1>Public::Members#show</h1>
-<p>Find me in app/views/public/members/show.html.erb</p>
+<table>
+  <thead>
+    <tr>
+      <th>プロフィール画像</th>
+      <th>ユーザー名</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><%= image_tag @member.get_profile_image, size: '100x100' %></td>
+        <td><%= link_to @member.name, member_path(@member) %></td>
+        <td></td>
+        <td><%= link_to "編集", edit_member_path(@member) %></td>
+        <td><%= "退会" %></td>
+      </tr>
+  </tbody>
+</table>
+
+<%= render 'public/posts/index', posts: @posts %>

@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     resources :posts,   except: [:new]
     resources :chats,   only: [:create, :show]
     # relationshipsはmemberモデルにネストする
-    resources :members, only: [:index, :show, :edit] do
+    resources :members, only: [:index, :show, :edit, :update] do
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
