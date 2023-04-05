@@ -1,0 +1,37 @@
+<% if member_signed_in? %>
+  <table>
+    <thead>
+      <tr>
+        <th><%= image_tag member.get_profile_image, size: '100x100' %></th>
+        <th><%= link_to member.name, member_path(member.id) %></th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <% if member.id != current_member.id %>
+            <td>
+              <% if current_member.following?(member) %>
+                <%= link_to "リフォロー", member_relationships_path(member.id), method: :delete %>
+              <% else %>
+                <%= link_to "フォロー", member_relationships_path(member.id), method: :post %>
+              <% end %>
+            </td>
+            <td>DM</td>
+          <% end %>
+        </tr>
+        <tr>
+          <% if member.id == current_member.id %>
+            <td><%= link_to "編集", edit_member_path(member.id) %></td>
+          <% end %>
+        </tr>
+    </tbody>
+  </table>
+<% else %>
+  <p>
+    ログインしていなくても<br>
+    投稿は見ることができます。<br>
+    <br>
+    ご自身で投稿するときは<%= link_to "こちら", new_member_session_path %><br>
+    からログインして下さい。
+  </p>
+<% end %>

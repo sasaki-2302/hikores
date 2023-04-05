@@ -1,21 +1,11 @@
-<table>
-  <thead>
-    <tr>
-      <th>プロフィール画像</th>
-      <th>ユーザー名</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-      <tr>
-        <td><%= image_tag @member.get_profile_image, size: '100x100' %></td>
-        <td><%= link_to @member.name, member_path(@member) %></td>
-        <td></td>
-        <td><%= link_to "編集", edit_member_path(@member) %></td>
-        <td><%= "退会" %></td>
-      </tr>
-  </tbody>
-</table>
-
-<%= render 'public/posts/index', posts: @posts %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render "public/shared/info", member: @member %>
+    </div>
+    <div class="col-md-7">
+      <h4><%= @member.name %>さんの投稿一覧</h4>
+      <%= render 'public/posts/index', posts: @posts %>
+    </div>
+  </div>
+</div>

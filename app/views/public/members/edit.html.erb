@@ -1,11 +1,20 @@
-<div class="form-group">
-  <%= form_with model: @member do |f| %>
-    <%= f.label :"プロフィール画像" %><br>
-    <%= f.file_field :profile_image, accept: "image/*" %><br>
-    <h5>ユーザー名</h5>
-    <%= f.text_field :name %><br>
-    <h5>内容</h5>
-    <%= f.text_field :email %><br>
-    <%= f.submit %>
-  <% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render "public/shared/info", member: @member %>
+    </div>
+    <div class="col-md-7">
+      <div class="form-group">
+        <%= form_with model: @member do |f| %>
+          <%= f.label :"プロフィール画像" %><br>
+          <%= f.file_field :profile_image, accept: "image/*" %><br>
+          <h5>ユーザー名</h5>
+          <%= f.text_field :name %><br>
+          <h5>内容</h5>
+          <%= f.text_field :email %><br>
+          <%= f.submit %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

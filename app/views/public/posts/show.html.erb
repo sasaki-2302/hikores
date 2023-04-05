@@ -1,18 +1,28 @@
-<table>
-  <thead>
-    <tr>
-      <th>投稿ユーザー</th>
-      <th>投稿タイトル</th>
-      <th>投稿内容</th>
-    </tr>
-  </thead>
-  <tbody>
-      <tr>
-        <td><%= link_to @post.member.name, member_path(@post.member_id) %></td>
-        <td><%= link_to @post.title, post_path(@post.id) %></td>
-        <td><%= @post.body %></td>
-        <td><%= link_to "編集", edit_post_path(@post) %></td>
-        <td><%= link_to "削除", @post, method: :delete %></td>
-      </tr>
-  </tbody>
-</table>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render "public/shared/info", member: @post.member %>
+    </div>
+    <div class="col-md-7">
+      <table>
+        <thead>
+          <tr>
+            <th>投稿ユーザー</th>
+            <th>投稿タイトル</th>
+            <th>投稿内容</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <td><%= link_to @post.member.name, member_path(@post.member_id) %></td>
+              <td><%= link_to @post.title, post_path(@post.id) %></td>
+              <td><%= @post.body %></td>
+              <td><%= link_to "編集", edit_post_path(@post) %></td>
+              <td><%= link_to "削除", @post, method: :delete %></td>
+            </tr>
+        </tbody>
+      </table>
+      <%= render "public/shared/form", post: @post %>
+    </div>
+  </div>
+</div>
