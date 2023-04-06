@@ -14,6 +14,14 @@
         <td><%= link_to post.title, post_path(post.id) %></td>
         <td><%= post.body %></td>
         <td><%= link_to "コメント " + post.comments.count.to_s + " 件", post_path(post.id) %></td>
+        <td>
+          <% if !member_signed_in? %>
+          <% elsif post.favorited_by?(current_member) %>
+            <%= link_to "♥" + post.favorites.count.to_s, post_favorites_path(post), method: :delete %>
+          <% else %>
+            <%= link_to "♡" + post.favorites.count.to_s, post_favorites_path(post), method: :post %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

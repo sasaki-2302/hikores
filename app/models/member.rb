@@ -5,6 +5,7 @@ class Member < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :posts, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   # has_manyで仮の名前,class_nameで本来のモデル,foreign_keyで参照するカラムを指定
   has_many :followeres, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :followeds, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
