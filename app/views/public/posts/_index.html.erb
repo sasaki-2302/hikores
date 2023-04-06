@@ -4,6 +4,7 @@
       <th>投稿ユーザー</th>
       <th>投稿タイトル</th>
       <th>投稿内容</th>
+      <th>コメント数</th>
     </tr>
   </thead>
   <tbody>
@@ -12,6 +13,7 @@
         <td><%= link_to post.member.name, member_path(post.member_id) %></td>
         <td><%= link_to post.title, post_path(post.id) %></td>
         <td><%= post.body %></td>
+        <td><%= link_to "コメント " + post.comments.count.to_s + " 件", post_path(post.id) %></td>
       </tr>
     <% end %>
   </tbody>

@@ -7,23 +7,27 @@
       </tr>
     </thead>
     <tbody>
-        <tr>
-          <% if member.id != current_member.id %>
-            <td>
-              <% if current_member.following?(member) %>
-                <%= link_to "リフォロー", member_relationships_path(member.id), method: :delete %>
-              <% else %>
-                <%= link_to "フォロー", member_relationships_path(member.id), method: :post %>
-              <% end %>
-            </td>
-            <td>DM</td>
-          <% end %>
-        </tr>
-        <tr>
-          <% if member.id == current_member.id %>
-            <td><%= link_to "編集", edit_member_path(member.id) %></td>
-          <% end %>
-        </tr>
+      <tr>
+        <td><%= link_to "フォロー: " + member.followings.count.to_s, member_followings_path(member.id) %></td>
+        <td><%= link_to "フォロワー: " + member.followers.count.to_s, member_followers_path(member.id) %></td>
+      </tr>
+      <tr>
+        <% if member.id != current_member.id %>
+          <td>
+            <% if current_member.following?(member) %>
+              <%= link_to "リフォロー", member_relationships_path(member.id), method: :delete %>
+            <% else %>
+              <%= link_to "フォロー", member_relationships_path(member.id), method: :post %>
+            <% end %>
+          </td>
+          <td>DM</td>
+        <% end %>
+      </tr>
+      <tr>
+        <% if member.id == current_member.id %>
+          <td><%= link_to "編集", edit_member_path(member.id) %></td>
+        <% end %>
+      </tr>
     </tbody>
   </table>
 <% else %>

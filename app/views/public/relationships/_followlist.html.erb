@@ -1,20 +1,14 @@
 <% if members.exists? %>
   <% members.each do |member| %>
-    <table>
+    <table class="table">
       <thead>
         <tr>
-          <th>name</th>
-          <th></th>
-          <th></th>
+          <td><%= image_tag member.get_profile_image, size: '50x50' %></td>
+          <td><%= link_to member.name, member_path(member.id) %></td>
+          <td><%= link_to "フォロー: " + member.followings.count.to_s, member_followings_path(member.id) %></td>
+          <td><%= link_to "フォロワー: " + member.followers.count.to_s, member_followers_path(member.id) %></td>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td><%= member.name %></td>
-          <td>フォロー数: <%= member.followings.count %></td>
-          <td>フォロワー数: <%= member.followers.count %></td>
-        </tr>
-      </tbody>
     </table>
   <% end %>
 <% else %>
