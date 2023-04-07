@@ -5,6 +5,7 @@ class Member < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :posts, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   # has_manyで仮の名前,class_nameで本来のモデル,foreign_keyで参照するカラムを指定
   has_many :followeres, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :followeds, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
@@ -12,11 +13,11 @@ class Member < ApplicationRecord
   has_many :followings, through: :followeres, source: :followed
   has_many :followers,  through: :followeds,  source: :follower
   # DMで使用
-  has_many :userrooms
+  has_many :user_rooms
   has_many :chats
-  has_many :rooms, through: :userroom
+  has_many :rooms, through: :user_rooms
 
-  has_one_attached :image
+  has_one_attached :profile_image
 
   # メンバーのプロフィール画像がなければno_imageを適応する
   def get_profile_image

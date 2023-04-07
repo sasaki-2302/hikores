@@ -1,2 +1,11 @@
-<h1>Public::Members#show</h1>
-<p>Find me in app/views/public/members/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render "public/shared/info", member: @member %>
+    </div>
+    <div class="col-md-7">
+      <h4><%= @member.name %>さんの投稿一覧</h4>
+      <%= render 'public/posts/index', posts: @posts %>
+    </div>
+  </div>
+</div>

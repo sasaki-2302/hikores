@@ -1,2 +1,56 @@
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render "public/shared/info", member: @post.member %>
+    </div>
+    <div class="col-md-7">
+      <table>
+        <thead>
+          <tr>
+            <th>投稿ユーザー</th>
+            <th>投稿タイトル</th>
+            <th>投稿内容</th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <td><%= link_to @post.member.name, member_path(@post.member_id) %></td>
+              <td><%= link_to @post.title, post_path(@post.id) %></td>
+              <td><%= @post.body %></td>
+              <td>
+                <% if !member_signed_in? %>
+                <% elsif @post.favorited_by?(current_member) %>
+                  <%= link_to "♥" + @post.favorites.count.to_s, post_favorites_path(@post), method: :delete %>
+                <% else %>
+                  <%= link_to "♡" + @post.favorites.count.to_s, post_favorites_path(@post), method: :post %>
+                <% end %>
+              </td>
+              <td><%= link_to "編集", edit_post_path(@post) %></td>
+              <td><%= link_to "削除", @post, method: :delete %></td>
+            </tr>
+        </tbody>
+      </table>
+      <div>
+        <%= form_with model: [@post, @comment] do |f| %>
+          <%= f.text_area :comment, rows: '3', placeholder: "コメントを書く" %><br>
+          <%= f.submit "送信する" %>
+        <% end %>
+      </div>
+      <div>
+        <p>コメント件数:<%= @post.comments.count %></p>
+        <% @post.comments.each do |comment| %>
+          <%= image_tag comment.member.get_profile_image, size: "40x40" %>
+          <%= comment.member.name %>さん
+          <%= comment.created_at.strftime('%Y/%m/%d %H:%M') %>
+          <% if comment.member == current_member %>
+            <%= link_to "コメントを削除", post_comment_path(comment.post, comment), method: :delete %>
+          <% end %><br>
+          コメント:<%= comment.comment %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

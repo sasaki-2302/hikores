@@ -1,2 +1,29 @@
-<h1>Public::Chats#show</h1>
-<p>Find me in app/views/public/chats/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render "public/shared/info", member: current_member %>
+    </div>
+    <div class="col-md-7">
+      <h1 class="text-center mb-4",id="room" data-room="<%= @room.id %>" data-member="<%= current_member.id %>">
+      <%= @member.name %> さんとのチャット</h1>
+      <div class="errors">
+        <%= render "layouts/errors", obj: @chat %>
+      </div>
+      <div class="chat mx-auto" style="width: 400px;">
+        <% @chats.each do |chat| %>
+          <% if chat.member_id == current_member.id %>
+            <p style="text-align: right;"><%= chat.chat %></p>
+          <% else %>
+            <p style="text-align: left;"><%= chat.chat %></p>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="text-center">
+        <%= form_with model: @chat, data: {remote: true} do |f| %>
+          <%= f.text_field :chat %>
+          <%= f.hidden_field :room_id %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,26 +1,33 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th>id</th>
-      <th>ユーザー名</th>
-      <th>メール</th>
-      <th>フォロー</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @members.each do |member| %>
-      <tr>
-        <td><%= member.id %></td>
-        <td><%= member.name %></td>
-        <td><%= member.email %></td>
-        <td>
-          <% if current_member.following?(member) %>
-            <%= link_to "リフォロー", member_relationships_path(member.id), method: :delete %>
-          <% else %>
-            <%= link_to "フォロー", member_relationships_path(member.id), method: :post %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render "public/shared/info", member: current_member %>
+    </div>
+    <div class="col-md-7">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>ユーザー名</th>
+            <th>フォロー</th>
+            <th>フォロワー</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @members.each do |member| %>
+            <tr>
+              <td><%= member.id %></td>
+              <td><%= link_to member.name, member_path(member.id) %></td>
+              <td><%= link_to "フォロー: " + member.followings.count.to_s, member_followings_path(member.id) %></td>
+              <td><%= link_to "フォロワー: " + member.followers.count.to_s, member_followers_path(member.id) %></td>
+              <td>
+                <%= render "public/shared/follow_btn", member: member %>
+              </td>
+            </tr>
           <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
