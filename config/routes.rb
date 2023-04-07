@@ -31,6 +31,10 @@ Rails.application.routes.draw do
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers'  => 'relationships#followers',  as: 'followers'
+      # member do はURLに:idを含む / collection doは含まない
+      member do
+       get :favorites
+      end
     end
     resources :chats, only: [:create, :show]
     get 'about' => 'homes#about', as: 'about'

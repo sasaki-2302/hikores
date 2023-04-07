@@ -11,21 +11,24 @@
         <td><%= link_to "フォロー: " + member.followings.count.to_s, member_followings_path(member.id) %></td>
         <td><%= link_to "フォロワー: " + member.followers.count.to_s, member_followers_path(member.id) %></td>
       </tr>
-        <tr>
-          <td>
-            <%= render "public/shared/follow_btn", member: member %>
-          </td>
-          <td>
-            <% if current_member != member && current_member.following?(member) && member.following?(current_member) %>
-              <%= link_to 'chatを始める', chat_path(member.id), class: "ml-3" %>
-            <% end %>
-          </td>
-        </tr>
+      <tr>
+        <td>
+          <%= render "public/shared/follow_btn", member: member %>
+        </td>
+        <td>
+          <% if current_member != member && current_member.following?(member) && member.following?(current_member) %>
+            <%= link_to 'chatを始める', chat_path(member.id), class: "ml-3" %>
+          <% end %>
+        </td>
+      </tr>
       <% if current_member == member %>
         <tr>
           <td><%= link_to "編集", edit_member_path(member.id) %></td>
         </tr>
       <% end %>
+      <tr>
+        <td><%=link_to"お気に入り記事",favorites_member_path(member) %></td>
+      </tr>
     </tbody>
   </table>
 <% else %>
