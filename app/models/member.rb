@@ -13,9 +13,9 @@ class Member < ApplicationRecord
   has_many :followings, through: :followeres, source: :followed
   has_many :followers,  through: :followeds,  source: :follower
   # DMで使用
-  has_many :userrooms
+  has_many :user_rooms
   has_many :chats
-  has_many :rooms, through: :userroom
+  has_many :rooms, through: :user_rooms
 
   has_one_attached :profile_image
 

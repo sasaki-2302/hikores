@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  # 顧客用
+  # ユーザー用
   # URL /members/sign_in ...
   devise_for :members, skip: [:passwords], controllers: {
     registrations: "public/registrations",
@@ -29,10 +29,10 @@ Rails.application.routes.draw do
     # relationshipsはmemberモデルにネストする
     resources  :members,       only: [:index, :show, :edit, :update] do
       resource :relationships, only: [:create, :destroy]
-      resource :chats,         only: [:create, :show]
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers'  => 'relationships#followers',  as: 'followers'
     end
+    resources :chats, only: [:create, :show]
     get 'about' => 'homes#about', as: 'about'
   end
 end
