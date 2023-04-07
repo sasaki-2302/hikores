@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 2023_04_05_024159) do
 
   create_table "cities", force: :cascade do |t|
     t.integer "prefecture_id"
-    t.string "city"
+    t.integer "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 2023_04_05_024159) do
   create_table "posts", force: :cascade do |t|
     t.integer "member_id"
     t.integer "prefecture_id"
+    t.integer "city_id"
     t.string "title"
     t.text "body"
     t.datetime "created_at", precision: 6, null: false
@@ -105,7 +106,7 @@ ActiveRecord::Schema.define(version: 2023_04_05_024159) do
   end
 
   create_table "prefectures", force: :cascade do |t|
-    t.integer "prefecture"
+    t.integer "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
