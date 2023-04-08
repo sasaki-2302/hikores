@@ -5,8 +5,9 @@
     </div>
     <div class="col-md-7">
       <%= render "public/posts/index", posts: @posts %>
-
-      <%= render "public/shared/form", post: @post %>
+      <% if member_signed_in? %>
+        <%= render "public/shared/form", post: @post %>
+      <% end %>
     </div>
   </div>
 </div>

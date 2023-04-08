@@ -19,6 +19,7 @@
         <td><%= link_to "コメント " + post.comments.count.to_s + " 件", post_path(post.id) %></td>
         <td>
           <% if !member_signed_in? %>
+            <%= "♡" + post.favorites.count.to_s %>
           <% elsif post.favorited_by?(current_member) %>
             <%= link_to "♥" + post.favorites.count.to_s, post_favorites_path(post), method: :delete %>
           <% else %>
