@@ -6,6 +6,7 @@ class Post < ApplicationRecord
   def favorited_by?(member)
     favorites.exists?(member_id: member.id)
   end
+
   # https://qiita.com/yuhi_taka/items/d607e1a46b342c205f96　参照
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to  :prefecture

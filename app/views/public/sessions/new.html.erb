@@ -1,11 +1,11 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3">
-      <%= render "public/shared/info", member: current_member %>
+      <%= render "public/shared/info"%>
     </div>
     <div class="col-md-7">
       <h2>ログイン</h2>
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= form_with model: @member, url: member_session_path do |f| %>
         <div class="field">
           <%= f.label :メールアドレス %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -32,4 +32,3 @@
     </div>
   </div>
 </div>
-
