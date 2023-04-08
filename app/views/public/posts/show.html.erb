@@ -3,49 +3,25 @@
     <div class="col-md-3">
       <%= render "public/shared/info", member: @post.member %>
     </div>
-    <div class="col-md-7">
-      <table>
-        <thead>
-          <tr>
-            <th>投稿ユーザー</th>
-            <th>投稿タイトル</th>
-            <th>投稿内容</th>
-            <th></th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-            <tr>
-              <td><%= link_to @post.member.name, member_path(@post.member_id) %></td>
-              <td><%= link_to @post.title, post_path(@post.id) %></td>
-              <td><%= @post.body %></td>
-              <td>
-                <!--ログインメンバー以外にはいいね数のみを表示-->
-                <% if !member_signed_in? %>
-                  <%= "♡" + @post.favorites.count.to_s %>
-                <!--ログインメンバーはいいねをつけることができる-->
-                <% elsif @post.favorited_by?(current_member) %>
-                  <%= link_to "♥" + @post.favorites.count.to_s, post_favorites_path(@post), method: :delete %>
-                <% else %>
-                  <%= link_to "♡" + @post.favorites.count.to_s, post_favorites_path(@post), method: :post %>
-                <% end %>
-              </td>
-              <!--投稿メンバーまたは管理者のみ表示-->
-              <% if @post.member == current_member || admin_signed_in? %>
-                <td><%= link_to "編集", edit_post_path(@post) %></td>
-                <td><%= link_to "削除", @post, method: :delete %></td>
-              <% end %>
-            </tr>
-        </tbody>
-      </table>
+    <div class="col-md-8">
+      投稿ユーザー:<%= link_to @post.member.name, member_path(@post.member_id) %><br>
+      投稿タイトル:<%= link_to @post.title, post_path(@post.id) %><br>
+      投稿内容:<br><%= @post.body %>
       <div>
-        <p>コメント件数:<%= @post.comments.count %></p>
+        <div>
+          <%= "コメント件数:" + @post.comments.count.to_s %>
+          <%= render "public/shared/favorite_btn", post: @post %>
+           <!--投稿メンバーまたは管理者のみ表示-->
+          <% if @post.member == current_member || admin_signed_in? %>
+            <%= link_to "投稿編集", edit_post_path(@post), class: "mx-3" %>
+            <%= link_to "投稿削除", @post, method: :delete %>
+          <% end %>
+        </div>
         <% @post.comments.each do |comment| %>
           <%= image_tag comment.member.get_profile_image, size: "40x40" %>
           <%= comment.member.name %>さん
           <%= comment.created_at.strftime('%Y/%m/%d %H:%M') %>
-          <% if comment.member == current_member %>
+          <% if comment.member == current_member || admin_signed_in? %>
             <%= link_to "コメントを削除", post_comment_path(comment.post, comment), method: :delete %>
           <% end %><br>
           コメント:<%= comment.comment %>

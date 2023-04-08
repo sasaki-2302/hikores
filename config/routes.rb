@@ -16,8 +16,8 @@ Rails.application.routes.draw do
   # namespaceにすることでURLにadminを含む
   namespace :admin do
     root to: 'homes#top'
-    resources :members, only: [:index, :show, :edit, :update]
-    resources :posts,   only: [:index, :show, :edit, :update]
+    resources :members, only: [:index, :edit, :update]
+    resources :posts,   only: [:index, :edit, :update]
   end
   # scopeにすることでURLにpublicを含まない
   scope module: :public do
@@ -31,6 +31,7 @@ Rails.application.routes.draw do
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers'  => 'relationships#followers',  as: 'followers'
+      put 'hide' => 'members#hide', as: 'hide'
       # member do はURLに:idを含む / collection doは含まない
       member do
        get :favorites

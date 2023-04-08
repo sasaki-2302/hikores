@@ -3,7 +3,7 @@
     <div class="col-md-3">
       <%= render "public/shared/info", member: current_member %>
     </div>
-    <div class="col-md-7">
+    <div class="col-md-8">
       <%= render "public/posts/index", posts: @posts %>
       <% if member_signed_in? %>
         <%= render "public/shared/form", post: @post %>

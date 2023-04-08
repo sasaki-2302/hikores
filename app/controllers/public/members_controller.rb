@@ -27,21 +27,30 @@ class Public::MembersController < ApplicationController
     @favorite_posts = Post.find(favorites)
   end
 
-  private
+  def hide
+    @member = current_member
+    # is_deleteをtrueに変更する
+    @member.update(is_deleted: true)
+    # ログアウトさせrootに飛ばす
+    reset_session
+    flash[:notice] = "ご利用ありがとうございました。アカウント復旧の際は運営までお問い合わせ下さい。"
+    redirect_to root_path
+  end
 
+  private
   def member_params
-    params.require(:member).permit(:name, :email, :profile_image)
+    params.require(:member).permit(:name, :email, :profile_image, :is_deleted)
   end
 
   def who_is_sign_in?
     member = Member.find(params[:id])
     # 未ログイン状態かを確認
     if !member_signed_in? && !admin_signed_in?
-      redirect_to posts_path
-    elsif
+      redirect_to members_path
+    else
       # 管理者でログイン中または現在ログイン中のメンバーが投稿した内容か確認
       unless admin_signed_in? || member.id == current_member.id
-        redirect_to posts_path
+        redirect_to members_path
       end
     end
   end

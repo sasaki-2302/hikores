@@ -3,7 +3,7 @@
     <div class="navbar">
       <%= link_to "ロゴ", root_path %>
       <ul>
-        <li><%= link_to "メンバー", members_path %></li>
+        <li><%= link_to "メンバー", admin_members_path %></li>
         <li><%= link_to "投稿", posts_path %></li>
         <li><%= link_to "ログイン", new_admin_session_path %></li>
         <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>

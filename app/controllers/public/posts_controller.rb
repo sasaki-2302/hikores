@@ -44,13 +44,12 @@ class Public::PostsController < ApplicationController
   end
 
   def who_is_sign_in?
-    member = @post.member
     # 未ログイン状態かを確認
     if !member_signed_in? && !admin_signed_in?
       redirect_to posts_path
-    elsif
+    else
       # 管理者でログイン中または現在ログイン中のメンバーが投稿した内容か確認
-      unless admin_signed_in? || member.id == current_member.id
+      unless admin_signed_in? || @post.member.id == current_member.id
         redirect_to posts_path
       end
     end
