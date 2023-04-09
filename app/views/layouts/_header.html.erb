@@ -3,12 +3,20 @@
     <div class="navbar">
       <%= link_to "ロゴ", root_path %>
       <ul>
-        <li><%= link_to "メンバー", members_path %></li>
-        <li><%= link_to "投稿", posts_path %></li>
-        <li><%= link_to "about", about_path %></li>
-        <li><%= link_to "新規登録", new_member_registration_path %></li>
-        <li><%= link_to "ログイン", new_member_session_path %></li>
-        <li><%= link_to "ログアウト", destroy_member_session_path, method: :delete %></li>
+        <% if admin_signed_in? %>
+          <li><%= link_to "メンバー", admin_members_path %></li>
+          <li><%= link_to "投稿", posts_path %></li>
+          <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
+        <% elsif member_signed_in? %>
+          <li><%= link_to "メンバー", members_path %></li>
+          <li><%= link_to "投稿", posts_path %></li>
+          <li><%= link_to "ログアウト", destroy_member_session_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to "メンバー", members_path %></li>
+          <li><%= link_to "投稿", posts_path %></li>
+          <li><%= link_to "新規登録", new_member_registration_path %></li>
+          <li><%= link_to "ログイン", new_member_session_path %></li>
+        <% end %>
       </ul>
     </div>
   </div>

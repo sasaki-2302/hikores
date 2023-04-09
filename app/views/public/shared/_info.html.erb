@@ -8,8 +8,8 @@
     </thead>
     <tbody>
       <tr>
-        <td><%= link_to "フォロー: " + member.followings.count.to_s, member_followings_path(member.id) %></td>
         <td><%= link_to "フォロワー: " + member.followers.count.to_s, member_followers_path(member.id) %></td>
+        <td><%= link_to "フォロー: " + member.followings.count.to_s, member_followings_path(member.id) %></td>
       </tr>
       <tr>
         <td>
@@ -23,7 +23,7 @@
       </tr>
       <% if current_member == member %>
         <tr>
-          <td><%= link_to "編集", edit_member_path(member.id) %></td>
+          <td><%= link_to "プロフィール編集", edit_member_path(member.id) %></td>
         </tr>
       <% end %>
       <tr>
@@ -31,12 +31,15 @@
       </tr>
     </tbody>
   </table>
+<% elsif admin_signed_in? %>
+  <p>管理者にてログイン中</p>
 <% else %>
   <p>
-    ログインしていなくても<br>
-    投稿は見ることができます。<br>
+    当サイトはログインしなくても<br>
+    投稿の閲覧が可能です。<br>
+    (一部、機能が制限されます)<br>
     <br>
-    ご自身で投稿するときは<%= link_to "こちら", new_member_session_path %><br>
+    ご自身で投稿されたい方は<%= link_to "こちら", new_member_session_path %><br>
     からログインして下さい。
   </p>
 <% end %>

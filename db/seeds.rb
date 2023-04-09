@@ -6,18 +6,34 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Admin.create!(
+  email: 'admin@a',
+  password: '000001',
+)
+
 # https://qiita.com/YoshikawaTakeshi/items/f9365175e5c77d67f6dc　参照
-# CSVファイルを使用することを明示
-require 'csv'
+# require 'csv'
 
-# 使用するデータ（CSVファイルの列）を指定
-CSVROW_PREFNAME = 1
-CSVROW_CITYNAME = 2
+# # CSV読み込み
+# file_path = 'lib/prefecture.csv'
+# csv_data = CSV.read(file_path)
 
-# CSVファイルを読み込み、DB（テーブル）へ保存
-CSV.foreach('db/csv/prefecture.csv') do |row|
-  city_name = row[CSVROW_CITYNAME]
-  prefecture = Prefecture.create(:name => row[1])
-  prefecture.save
-  City.find_or_create_by(name: city_name, prefecture_id: prefecture.id)
-end
+# # 都道府県データ抽出
+# prefectures_list = csv_data.map { |row| row[1] }.uniq
+
+# # 市区町村データ抽出
+# cities_list = csv_data.map do |row|
+#     next if row[2] == nil
+#     row[1, 2]
+#   end.compact
+
+# # 都道府県データ作成
+# prefectures_list.each do |prefecture|
+#   Prefecture.create!(name: prefecture)
+# end
+
+# # 市区町村データ作成
+# cities_list.each do |prefecture, city|
+#   prefecture = Prefecture.find_by(name: prefecture)
+#   prefecture.cities.create(name: city)
+# end

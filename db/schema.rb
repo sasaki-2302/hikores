@@ -61,10 +61,11 @@ ActiveRecord::Schema.define(version: 2023_04_07_023957) do
   end
 
   create_table "cities", force: :cascade do |t|
-    t.integer "prefecture_id"
-    t.integer "name"
+    t.integer "prefecture_id", null: false
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["prefecture_id"], name: "index_cities_on_prefecture_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -107,9 +108,10 @@ ActiveRecord::Schema.define(version: 2023_04_07_023957) do
   end
 
   create_table "prefectures", force: :cascade do |t|
-    t.integer "name"
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_prefectures_on_name", unique: true
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -133,4 +135,5 @@ ActiveRecord::Schema.define(version: 2023_04_07_023957) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "cities", "prefectures"
 end

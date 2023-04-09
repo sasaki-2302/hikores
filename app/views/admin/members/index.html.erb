@@ -1,18 +1,35 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th>id</th>
-      <th>ユーザー名</th>
-      <th>メール</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @members.each do |member| %>
-      <tr>
-        <td><%= member.id %></td>
-        <td><%= member.name %></td>
-        <td><%= member.email %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render "public/shared/info", member: current_member %>
+    </div>
+    <div class="col-md-8">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>ユーザー名</th>
+            <th>メールアドレス</th>
+            <th>ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @members.each do |member| %>
+            <tr>
+              <td><%= member.id %></td>
+              <td><%= link_to member.name, member_path(member.id) %></td>
+              <td><%= member.email %></td>
+              <td>
+                <% if member.is_deleted == true %>
+                  <%= link_to "退会", edit_admin_member_path(member.id), style: "color: #dc3545" %>
+                <% else %>
+                  <%= link_to "有効", edit_admin_member_path(member.id), style: "color: #28a745" %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

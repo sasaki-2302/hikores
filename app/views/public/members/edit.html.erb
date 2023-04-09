@@ -3,16 +3,16 @@
     <div class="col-md-3">
       <%= render "public/shared/info", member: @member %>
     </div>
-    <div class="col-md-7">
+    <div class="col-md-8">
       <div class="form-group">
         <%= form_with model: @member do |f| %>
           <%= f.label :"プロフィール画像" %><br>
           <%= f.file_field :profile_image, accept: "image/*" %><br>
-          <h5>ユーザー名</h5>
+          <%= f.label :"ユーザー名" %><br>
           <%= f.text_field :name %><br>
-          <h5>内容</h5>
+          <%= f.label :"メールアドレス" %><br>
           <%= f.text_field :email %><br>
-          <%= f.submit %>
+          <%= f.submit"更新" %>
         <% end %>
       </div>
     </div>

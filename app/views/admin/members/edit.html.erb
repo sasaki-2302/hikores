@@ -1,2 +1,24 @@
-<h1>Admin::Members#edit</h1>
-<p>Find me in app/views/admin/members/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render "public/shared/info", member: @member %>
+    </div>
+    <div class="col-md-8">
+      <div class="form-group">
+        <%= form_with model: @member do |f| %>
+          <%= f.label :"プロフィール画像" %><br>
+          <%= f.file_field :profile_image, accept: "image/*" %><br>
+          <%= f.label :"ユーザー名" %><br>
+          <%= f.text_field :name %><br>
+          <%= f.label :"メールアドレス" %><br>
+          <%= f.text_field :email %><br>
+          <%= f.radio_button :is_deleted, "false" %>
+          <%= f.label :"有効" %>
+          <%= f.radio_button :is_deleted, "true", class:"ml-4" %>
+          <%= f.label :"退会" %><br>
+          <%= f.submit"更新" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
