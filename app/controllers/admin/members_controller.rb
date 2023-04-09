@@ -1,4 +1,7 @@
 class Admin::MembersController < ApplicationController
+  # 管理者でログインしていなければadminを含むURLにアクセスできないようにする
+  before_action :authenticate_admin!
+
   def index
     @members = Member.all
   end

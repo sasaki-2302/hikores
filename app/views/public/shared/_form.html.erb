@@ -1,12 +1,11 @@
 <div class="form-group">
   <%= form_with model: post do |f| %>
-    <%= f.label :都道府県名 %>
-    <%= f.label :市区町村名 %><br>
+    <%= f.label :地域を選択 %><br>
     <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}, {class:"select-box", id:"item-prefecture"}) %>
-    <%= f.collection_select(:city_id, City.all, :id, :name, {}, {class:"select-box", id:"item-city"}) %>
-    <h5>タイトル</h5>
+    <%= f.collection_select(:city_id, City.all, :id, :name, {}, {class:"select-box", id:"item-city"}) %><br>
+    <%= f.label :タイトル %><br>
     <%= f.text_field :title %><br>
-    <h5>内容</h5>
+    <%= f.label :内容 %><br>
     <%= f.text_area :body %><br>
     <%= f.submit %>
   <% end %>
