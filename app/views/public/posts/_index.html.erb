@@ -3,8 +3,13 @@
     <tr>
       <th>投稿地域</th>
       <th>タイトル</th>
-      <th>コメント</th>
-      <th>いいね</th>
+      <!--URLに"search"を含む場合、表示内容を変更-->
+      <% unless request.path.include?("search") %>
+        <th>コメント</th>
+        <th>いいね</th>
+      <% else %>
+        <th>内容</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -15,10 +20,15 @@
           <%= link_to post.city.name, root_path %>
         </td>
         <td><%= link_to post.title, post_path(post.id) %></td>
-        <td><%= link_to "コメント " + post.comments.count.to_s + " 件", post_path(post.id) %></td>
-        <td>
-          <%= render "public/shared/favorite_btn", post: post %>
-        </td>
+        <!--URLに"search"を含む場合、表示内容を変更-->
+        <% unless request.path.include?("search") %>
+          <td><%= link_to "コメント " + post.comments.count.to_s + " 件", post_path(post.id) %></td>
+          <td>
+            <%= render "public/shared/favorite_btn", post: post %>
+          </td>
+        <% else %>
+          <td><%= post.body %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
