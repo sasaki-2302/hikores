@@ -5,8 +5,8 @@
       <th>タイトル</th>
       <!--URLに"search"を含む場合、表示内容を変更-->
       <% unless request.path.include?("search") %>
-        <th>コメント</th>
-        <th>いいね</th>
+        <th></th>
+        <th></th>
       <% else %>
         <th>内容</th>
       <% end %>
@@ -16,16 +16,14 @@
     <% posts.each do |post| %>
       <tr>
         <td>
-          <%= link_to post.prefecture.name, root_path %>
-          <%= link_to post.city.name, root_path %>
+          <%= post.prefecture.name %>
+          <%= link_to post.city.name, search_path(prefecture_id: post.prefecture[:id], city_id: post.city[:id]) %>
         </td>
         <td><%= link_to post.title, post_path(post.id) %></td>
         <!--URLに"search"を含む場合、表示内容を変更-->
         <% unless request.path.include?("search") %>
+          <td><%= render "public/shared/favorite_btn", post: post %></td>
           <td><%= link_to "コメント " + post.comments.count.to_s + " 件", post_path(post.id) %></td>
-          <td>
-            <%= render "public/shared/favorite_btn", post: post %>
-          </td>
         <% else %>
           <td><%= post.body %></td>
         <% end %>
