@@ -1,0 +1,24 @@
+<%= form_with url: search_path(model:"post"), method: :get, local: true do |f| %>
+  <div class="search_form d-flex justify-content-end">
+    <div><%= f.text_field :content, placeholder:"投稿内容を検索する" %></div>
+    <div>
+      <%= button_tag type: "submit", class: "btn btn-light" do %>
+        <i class="fas fa-search"></i>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<%= form_with url: search_path(model:"post"), method: :get, local: true do |f| %>
+  <div class="search_form d-flex justify-content-end">
+    <div><!--画面遷移前に選択したプルダウンの項目を引き継ぐ-->
+      <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {selected: params[:prefecture_id]}, {class:"select-box", id:"item-prefecture"}) %>
+      <%= f.collection_select(:city_id, City.all, :id, :name, {selected: params[:city_id]}, {class:"select-box", id:"item-city"}) %><br>
+    </div>
+    <div>
+      <%= button_tag type: "submit", class: "btn btn-light" do %>
+        <i class="fas fa-search"></i>
+      <% end %>
+    </div>
+  </div>
+<% end %>

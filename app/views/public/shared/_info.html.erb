@@ -1,36 +1,18 @@
 <% if member_signed_in? %>
-  <table>
-    <thead>
-      <tr>
-        <th><%= image_tag member.get_profile_image, size: '100x100' %></th>
-        <th><%= link_to member.name, member_path(member.id) %></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><%= link_to "フォロワー: " + member.followers.count.to_s, member_followers_path(member.id) %></td>
-        <td><%= link_to "フォロー: " + member.followings.count.to_s, member_followings_path(member.id) %></td>
-      </tr>
-      <tr>
-        <td>
-          <%= render "public/shared/follow_btn", member: member %>
-        </td>
-        <td>
-          <% if current_member != member && current_member.following?(member) && member.following?(current_member) %>
-            <%= link_to 'chatを始める', chat_path(member.id), class: "ml-3" %>
-          <% end %>
-        </td>
-      </tr>
-      <% if current_member == member %>
-        <tr>
-          <td><%= link_to "プロフィール編集", edit_member_path(member.id) %></td>
-        </tr>
-      <% end %>
-      <tr>
-        <td><%=link_to"お気に入り記事",favorites_member_path(member) %></td>
-      </tr>
-    </tbody>
-  </table>
+  <%= image_tag member.get_profile_image, size: '100x100' %>
+  <%= link_to member.name, member_path(member.id) %><br>
+  <%= link_to "フォロー: " + member.followings.count.to_s, member_followings_path(member.id) %><br>
+  <%= link_to "フォロワー: " + member.followers.count.to_s, member_followers_path(member.id) %><br>
+  <%= render "public/shared/follow_btn", member: member %>
+  <% if current_member != member && current_member.following?(member) && member.following?(current_member) %>
+    <%= link_to 'chatを始める', chat_path(member.id), class: "ml-3" %>
+  <% end %>
+  <% if current_member == member %>
+    <div>
+      <%= link_to "プロフィール編集", edit_member_path(member.id) %>
+    </div>
+  <% end %>
+  <%=link_to"お気に入り記事",favorites_member_path(member) %>
 <% elsif admin_signed_in? %>
   <p>管理者にてログイン中</p>
 <% else %>
