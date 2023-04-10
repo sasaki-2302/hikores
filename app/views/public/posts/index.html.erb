@@ -1,2 +1,13 @@
-<h1>Public::Posts#index</h1>
-<p>Find me in app/views/public/posts/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render "public/shared/info", member: current_member %>
+    </div>
+    <div class="col-md-8">
+      <%= render "public/posts/index", posts: @posts %>
+      <% if member_signed_in? %>
+        <%= render "public/shared/form", post: @post %>
+      <% end %>
+    </div>
+  </div>
+</div>

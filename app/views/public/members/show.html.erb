@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render "public/shared/info", member: @member %>
+    </div>
+    <div class="col-md-8">
+      <h4>
+        <%= @member.name %>さんの投稿一覧
+        <% if admin_signed_in? %>
+          <%= link_to "メンバー編集へ",edit_admin_member_path(@member) %>
+        <% elsif member_signed_in? && @member.id == current_member.id %>
+          <%= link_to "退会", member_hide_path(current_member), method: :put, "data-confirm" => "本当に退会しますか？", class: "btn btn-outline-danger" %>
+        <% end %>
+      </h4>
+      <%= render 'public/posts/index', posts: @posts %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render "public/shared/info", member: @member %>
+    </div>
+    <div class="col-md-8">
+      お気に入り一覧
+      <% @favorite_posts.each do |post|%><br>
+        <%= link_to post.title, post_path(post.id) %>
+      <% end %>
+    </div>
+  </div>
+</div>

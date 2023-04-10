@@ -1,8 +1,8 @@
 class CreateCities < ActiveRecord::Migration[6.1]
   def change
     create_table :cities do |t|
-      t.integer :prefecture_id
-      t.string :city
+      t.references :prefecture, null: false, foreign_key: true
+      t.string :name, null: false
 
       t.timestamps
     end
