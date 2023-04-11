@@ -16,6 +16,7 @@
           <li><%= link_to "投稿", posts_path %></li>
           <li><%= link_to "新規登録", new_member_registration_path %></li>
           <li><%= link_to "ログイン", new_member_session_path %></li>
+          <li><%= link_to "ゲスト", member_guest_sign_in_path, method: :post %></li>
         <% end %>
       </ul>
       <div><%= render 'layouts/search' %></div>
