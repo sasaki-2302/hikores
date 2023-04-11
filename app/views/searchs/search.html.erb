@@ -4,7 +4,15 @@
       <%= render "public/shared/info", member: current_member %>
     </div>
     <div class="col-md-8">
-      <h3>検索結果 "<%= @records.count %>" 件</h3>
+       <!--都道府県・市区町村・内容のうちどれで検索しているか判別し表示結果を分岐-->
+      <% if @prefecture == nil %>
+        <h3>"<%= @content %>"での検索結果 <%= @records.count %> 件</h3>
+      <% elsif @content == nil && @city == nil %>
+        <h3>"<%= @pref_name %>"での検索結果 <%= @records.count %> 件</h3>
+      <% else %>
+        <h3>"<%= @city_name %>"での検索結果 <%= @records.count %> 件</h3>
+      <% end %>
+
       <%= render 'public/posts/index', posts: @records %>
     </div>
   </div>
