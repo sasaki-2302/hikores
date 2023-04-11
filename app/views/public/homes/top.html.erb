@@ -5,6 +5,11 @@
     </div>
     <div class="col-md-8">
       <div><%= flash[:notice] %></div>
+      <!--jmap表示-->
+      <div id="jmap"></div>
     </div>
   </div>
 </div>
+
+<!--jmap.js読み込み-->
+<%= javascript_pack_tag 'jmap' %>
