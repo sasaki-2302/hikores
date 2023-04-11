@@ -16,7 +16,7 @@
     <% posts.each do |post| %>
       <tr>
         <td>
-          <%= post.prefecture.name %>
+          <%= link_to post.prefecture.name, search_path(prefecture_id: post.prefecture[:id]) %>
           <%= link_to post.city.name, search_path(prefecture_id: post.prefecture[:id], city_id: post.city[:id]) %>
         </td>
         <td><%= link_to post.title, post_path(post.id) %></td>
