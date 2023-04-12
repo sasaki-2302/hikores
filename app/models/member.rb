@@ -42,11 +42,11 @@ class Member < ApplicationRecord
   # ゲストメンバーを定義
   def self.guest
     # find_or_create_byはデータ検索と作成を自動で判別するRailsのメソッド
-    find_or_create_by!(name: 'guestmember', email: 'guest@example.com') do |member|
+    find_or_create_by!(name: 'guest_member', email: 'guest@example.com') do |member|
       # ランダムな文字列を生成するRubyのメソッドの一種
       member.password = SecureRandom.urlsafe_base64
       # 名前をguestmemberに固定することでメンバーモデルで.guestの記述が使用できる
-      member.name = 'guestmember'
+      member.name = 'guest_member'
     end
   end
 end

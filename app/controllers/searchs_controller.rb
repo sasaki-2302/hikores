@@ -4,10 +4,9 @@ class SearchsController < ApplicationController
     @city = params[:city_id]
     @prefecture = params[:prefecture_id]
     @content = params[:content]
-
     # 検索結果で使用
     @records = Post.search_for(@city,@prefecture,@content)
-    @Pref_name = Prefecture.find(@prefecture).name
-    @city_name = City.find(@city).name
+    # 投稿時に使用
+    @post = Post.new
   end
 end

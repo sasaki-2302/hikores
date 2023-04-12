@@ -3,14 +3,13 @@ class Public::PostsController < ApplicationController
 
   def index
     @posts = Post.all
-    @post = Post.new
   end
 
   def create
     @post = Post.new(post_params)
     @post.member_id = current_member.id
     if @post.save
-      redirect_to posts_path
+      redirect_to request.referer
     else
       redirect_to root_path
     end
