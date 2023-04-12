@@ -13,7 +13,8 @@
     </div>
   <% end %>
   <%=link_to"お気に入り記事",favorites_member_path(member) %>
-  <% unless request.path.include?("city_id") %>
+  <!--URLにcity_idが含まれる時のみ投稿フィールドを表示-->
+  <% if request.parameters.include?("city_id") %>
     <%= render "public/shared/form", post: @post %>
   <% end %>
 
