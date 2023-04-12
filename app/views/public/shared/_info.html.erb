@@ -7,21 +7,31 @@
   <% if current_member != member && current_member.following?(member) && member.following?(current_member) %>
     <%= link_to 'chatを始める', chat_path(member.id), class: "ml-3" %>
   <% end %>
-  <% if current_member == member %>
+  <% if current_member == member && member.name != "guest_member" %>
     <div>
       <%= link_to "プロフィール編集", edit_member_path(member.id) %>
     </div>
   <% end %>
   <%=link_to"お気に入り記事",favorites_member_path(member) %>
+  <% unless request.path.include?("city_id") %>
+    <%= render "public/shared/form", post: @post %>
+  <% end %>
+
 <% elsif admin_signed_in? %>
   <p>管理者にてログイン中</p>
+
 <% else %>
   <p>
-    当サイトはログインしなくても<br>
-    投稿の閲覧が可能です。<br>
+    当サイトはログインせずに投稿の閲覧が可能です。<br>
     (一部、機能が制限されます)<br>
     <br>
-    ご自身で投稿されたい方は<%= link_to "こちら", new_member_session_path %><br>
-    からログインして下さい。
+    ご自身で投稿されたい方は<br>
+    <%= link_to "こちら", new_member_session_path %>
+    からログインして下さい。<br>
+    <br>
+    また
+    <%= link_to "こちら", member_guest_sign_in_path, method: :post %>
+    からゲストとして機能を体験することも可能です。<br>
+    (1時間後に自動的にログアウトされ、投稿内容も消去されます(未実装))
   </p>
 <% end %>

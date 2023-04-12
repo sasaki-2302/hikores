@@ -39,4 +39,14 @@ class Member < ApplicationRecord
   def active_for_authentication?
     super && (self.is_deleted == false)
   end
+  # ゲストメンバーを定義
+  def self.guest
+    # find_or_create_byはデータ検索と作成を自動で判別するRailsのメソッド
+    find_or_create_by!(name: 'guest_member', email: 'guest@example.com') do |member|
+      # ランダムな文字列を生成するRubyのメソッドの一種
+      member.password = SecureRandom.urlsafe_base64
+      # 名前をguestmemberに固定することでメンバーモデルで.guestの記述が使用できる
+      member.name = 'guest_member'
+    end
+  end
 end
