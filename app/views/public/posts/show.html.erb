@@ -3,42 +3,81 @@
     <div class="col-md-3">
       <%= render "public/shared/info", member: @post.member %>
     </div>
-    <div class="col-md-6 card" style="height:420px;">
-      <div class="d-flex justify-content-between mt-3">
-        <div>
-          <%= link_to image_tag(@post.member.get_profile_image, size: '30x30', style:"border-radius: 20px;"), member_path(@post.member.id) %>
-          <%= link_to @post.member.name, member_path(@post.member.id) %>
-        </div>
-        <div>
-          <!--投稿メンバーまたは管理者のみ表示-->
-          <% if @post.member == current_member || admin_signed_in? %>
-            <%= link_to edit_post_path(@post), class: "mx-3" do %>
-              <i class="fas fa-cut"></i>
+    <div class="col-md-6">
+      <div class="card" style="height:420px;">
+        <div class="d-flex justify-content-around mt-3">
+          <div>
+            <%= link_to image_tag(@post.member.get_profile_image, size: '30x30', style:"border-radius: 20px;"), member_path(@post.member.id) %>
+            <%= link_to @post.member.name, member_path(@post.member.id) %>
+          </div>
+          <div>
+            <!--投稿メンバーまたは管理者のみ表示-->
+            <% if @post.member == current_member || admin_signed_in? %>
+              <%= link_to edit_post_path(@post), class: "mx-3" do %>
+                <i class="fas fa-cut"></i>
+              <% end %>
+              <%= link_to @post, method: :delete, data: {confirm: "この投稿を削除しますか？"} do %>
+                <i class="far fa-trash-alt"></i>
+              <% end %>
             <% end %>
-            <%= link_to @post, method: :delete, data: {confirm: "この投稿を削除しますか？"} do %>
-              <i class="far fa-trash-alt"></i>
+          </div>
+        </div>
+        <div class="col-md-12 card-body">
+           <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <!--serch_pathにpref_idとcity_idを渡すことで、都道府県名と市区町村名それぞれの検索結果を表示-->
+              <%= link_to @post.prefecture.name, search_path(prefecture_id: @post.prefecture.id) %>
+              <%= link_to @post.city.name, search_path(prefecture_id: @post.prefecture.id, city_id: @post.city.id) %>
+            </li>
+            <li class="list-group-item">
+              <%= link_to @post.title, post_path(@post.id) %>
+            </li>
+            <li class="list-group-item">
+              <%= @post.body %>
+            </li>
+          </ul>
+        </div>
+        <!--いいねを投稿内下部に固定-->
+        <div class="d-flex justify-content-end mt-auto">
+          <%= render "public/shared/favorite_btn", post: @post %>
+          <%= link_to "通報", root_path %>
+        </div>
+      </div>
+      <!--コメント表示-->
+      <div class="my-3">
+        コメント <%= @post.comments.count %> 件
+      </div>
+      <% @post.comments.each do |comment| %>
+        <div class="col-9 mb-2">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <%= comment.comment %>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <div>
+                <%= link_to image_tag(comment.member.get_profile_image, size: '30x30', style:"border-radius: 15px;"), member_path(comment.member.id) %>
+                <%= link_to comment.member.name, member_path(comment.member.id) %>さん
+              </div>
+              <div>
+                <%= comment.created_at.strftime('%Y/%m/%d %H:%M') %>
+                <% if comment.member == current_member || admin_signed_in? %>
+                  <%= link_to post_comment_path(comment.post, comment), method: :delete, data: {confirm: "このコメントを削除しますか？"} do %>
+                    <i class="far fa-trash-alt"></i>
+                  <% end %>
+                <% end %>
+              </div>
+            </li>
+          </ul>
+        </div>
+      <% end %>
+      <div class="col-9">
+        <% if member_signed_in? %>
+          <%= form_with model: [@post, @comment] do |f| %>
+            <%= f.text_area :comment, placeholder:"コメントを書く(2〜100文字)", class:"form-control", rows:"4" %>
+            <%= f.button :type => "submit", class:"mx-auto",style: "background: none;" do %>
+              <i class="far fa-paper-plane"></i>
             <% end %>
           <% end %>
-        </div>
-      </div>
-      <div class="col-md-12 card-body">
-         <ul class="list-group list-group-flush">
-          <li class="list-group-item">
-            <!--serch_pathにpref_idとcity_idを渡すことで、都道府県名と市区町村名それぞれの検索結果を表示-->
-            <%= link_to @post.prefecture.name, search_path(prefecture_id: @post.prefecture.id) %>
-            <%= link_to @post.city.name, search_path(prefecture_id: @post.prefecture.id, city_id: @post.city.id) %>
-          </li>
-          <li class="list-group-item">
-            <%= link_to @post.title, post_path(@post.id) %>
-          </li>
-          <li class="list-group-item">
-            <%= @post.body %>
-          </li>
-        </ul>
-      </div>
-      <!--いいねを投稿内下部に固定-->
-      <div class="d-flex justify-content-end mt-auto">
-        <%= render "public/shared/favorite_btn", post: @post %>
-        <%= link_to "通報", root_path %>
+        <% end %>
       </div>
     </div>
