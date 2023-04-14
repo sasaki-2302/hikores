@@ -3,16 +3,18 @@
     <div class="col-md-3">
       <%= render "public/shared/info", member: @member %>
     </div>
-    <div class="col-md-8">
-      <h4>
-        <%= @member.name %>さんの投稿一覧
-        <% if admin_signed_in? %>
-          <%= link_to "メンバー編集へ",edit_admin_member_path(@member) %>
-        <!--メンバーがログインしていて、自分の以外の詳細ページにはボタンを表示しない、なおかつゲストにも表示しない-->
-        <% elsif member_signed_in? && @member.id == current_member.id && @member.name != "guest_member" %>
-          <%= link_to "退会", member_hide_path(current_member), method: :put, "data-confirm" => "本当に退会しますか？", class: "btn btn-outline-danger" %>
-        <% end %>
-      </h4>
+    <div class="col-md-8 card px-0">
+      <div class="card-header">
+        <h4>
+          <%= @member.name %>さんの投稿一覧
+          <% if admin_signed_in? %>
+            <%= link_to "メンバー編集へ",edit_admin_member_path(@member) %>
+          <!--メンバーがログインしていて、自分の以外の詳細ページにはボタンを表示しない、なおかつゲストにも表示しない-->
+          <% elsif member_signed_in? && @member.id == current_member.id && @member.name != "guest_member" %>
+            <%= link_to "退会", member_hide_path(current_member), method: :put, "data-confirm" => "本当に退会しますか？", class: "btn btn-outline-danger" %>
+          <% end %>
+        </h4>
+      </div>
       <%= render 'public/posts/index', posts: @posts %>
     </div>
   </div>

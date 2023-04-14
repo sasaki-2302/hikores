@@ -4,18 +4,23 @@
       <%= link_to image_tag(member.get_profile_image, size: '100x100', style: "border-radius: 50px;"), member_path(member.id) %>
       <%= link_to member.name, member_path(member.id) %>
     </div>
-    <%= link_to "フォロー: " + member.followings.count.to_s, member_followings_path(member.id) %>
-    <%= link_to "フォロワー: " + member.followers.count.to_s, member_followers_path(member.id) %><br>
-    <%= render "public/shared/follow_btn", member: member %>
-    <% if current_member != member && current_member.following?(member) && member.following?(current_member) %>
-      <%= link_to 'chatを始める', chat_path(member.id), class: "ml-3" %>
-    <% end %>
+    <div>
+      <%= link_to "フォロー: " + member.followings.count.to_s, member_followings_path(member.id) %>
+      <%= link_to "フォロワー: " + member.followers.count.to_s, member_followers_path(member.id) %>
+    </div>
+    <div>
+      <%= render "public/shared/follow_btn", member: member %>
+    </div>
     <% if current_member == member && member.name != "guest_member" %>
       <div>
-        <%= link_to "プロフィール編集", edit_member_path(member.id) %>
+        <%= link_to edit_member_path(member.id), class:"btn btn-outline-secondary my-2" do %>
+          プロフィールを編集 <i class="fas fa-cut"></i>
+        <% end %>
       </div>
     <% end %>
-    <%=link_to"お気に入り記事",favorites_member_path(member) %>
+    <%= link_to favorites_member_path(member), class:"btn btn-outline-secondary" do %>
+      <i class="fas fa-heart fa-spin" style= "color:#d83473"></i>お気に入りを開く<i class="fas fa-heart fa-spin" style= "color:#d83473"></i>
+    <% end %>
     <!--URLにcity_idが含まれる時のみ投稿フィールドを表示-->
     <% if request.parameters.include?("city_id") %>
       <%= render "public/shared/form", post: @post %>
