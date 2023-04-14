@@ -1,9 +1,19 @@
 <div class="form-group mt-3">
   <%= form_with model: post do |f| %>
-    <%= f.collection_select(:prefecture_id, Prefecture.where(id: @prefecture), :id, :name, {class:"select-box", id:"item-prefecture"}) %>
-    <%= f.collection_select(:city_id, City.where(prefecture_id: @prefecture), :id, :name, {selected: params[:city_id]}, {class:"select-box", id:"item-city"}) %><br>
-    <%= f.text_field :title, placeholder:"タイトル" %><br>
-    <%= f.text_area :body, placeholder:"ここには投稿内容を入力して下さい" %><br>
-    <%= f.submit"投稿" %>
+    <!--編集ページでは都道府県名・市区町村名を修正できないように固定する-->
+    <% unless request.path.include?("edit") %>
+      <%= f.collection_select(:prefecture_id, Prefecture.where(id: @prefecture), :id, :name, {class:"select-box", id:"item-prefecture"}) %>
+      <%= f.collection_select(:city_id, City.where(prefecture_id: @prefecture), :id, :name, {selected: params[:city_id]}, {class:"select-box", id:"item-city"}) %><br>
+    <% else %>
+      <%= post.prefecture.name %>
+      <%= post.city.name %><br>
+    <% end %>
+    <%= f.label:"タイトル" %>
+    <%= f.text_field :title, placeholder:"タイトル(2〜20文字)", class:"form-control" %>
+    <%= f.label:"内容" %>
+    <%= f.text_area :body, placeholder:"ここには投稿内容を入力して下さい(10〜200文字)", class:"form-control", rows:"6" %>
+    <%= f.button :type => "submit", style: "background: none;" do %>
+      <i class="far fa-paper-plane"></i>
+    <% end %>
   <% end %>
 </div>

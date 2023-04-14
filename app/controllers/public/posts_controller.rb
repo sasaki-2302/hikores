@@ -21,11 +21,9 @@ class Public::PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
   end
 
   def update
-    @post = Post.find(params[:id])
     @post.update(post_params)
     redirect_to post_path(@post.id)
   end
@@ -43,10 +41,11 @@ class Public::PostsController < ApplicationController
   end
 
   def who_is_sign_in?
-    # 未ログイン状態かを確認
+    # 未ログイン状態ならrootへ遷移させる
     if !member_signed_in? && !admin_signed_in?
-      redirect_to posts_path
+      redirect_to root_path
     else
+      @post = Post.find(params[:id])
       # 管理者でログイン中または現在ログイン中のメンバーが投稿した内容か確認
       unless admin_signed_in? || @post.member.id == current_member.id
         redirect_to posts_path

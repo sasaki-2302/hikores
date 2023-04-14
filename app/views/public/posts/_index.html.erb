@@ -1,12 +1,12 @@
 <div class="index_head d-flex justify-content-center flex-wrap">
   <% posts.each do |post| %>
-    <div class="col-xs-2 card m-1" style="width:200px; height:250px; ">
+    <div class="col-xs-2 card m-1" style="width:200px; height:250px;">
       <div class="my-2">
         <%= link_to image_tag(post.member.get_profile_image, size: '30x30', style:"border-radius: 20px;"), member_path(post.member.id) %>
         <%= link_to post.member.name, member_path(post.member.id) %>
       </div>
       <div class="card mx-auto" style="width:190px; height:180px;">
-        <!--serch_pathにpref_idとcity_idを渡すことで検索結果を表示-->
+        <!--serch_pathにpref_idとcity_idを渡すことで、都道府県名と市区町村名それぞれの検索結果を表示-->
         <div>
           <%= link_to post.prefecture.name, search_path(prefecture_id: post.prefecture.id) %>
           <%= link_to post.city.name, search_path(prefecture_id: post.prefecture.id, city_id: post.city.id) %>
