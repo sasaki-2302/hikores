@@ -1,7 +1,7 @@
 <div class="mt-2 text-center">
   <% if member_signed_in? %>
     <div class="mb-2">
-      <%= link_to image_tag(member.get_profile_image, size: '100x100', style: "border-radius: 50px;"), member_path(member.id) %>
+      <%= link_to image_tag(member.get_profile_image, size: '100x100', style: "border-radius: 50px;"), member_path(member.id) %><br>
       <%= link_to member.name, member_path(member.id) %>
     </div>
     <div>
@@ -18,9 +18,7 @@
         <% end %>
       </div>
     <% end %>
-    <%= link_to favorites_member_path(member), class:"btn btn-outline-secondary" do %>
-      <i class="fas fa-heart fa-spin" style= "color:#d83473"></i>お気に入りを開く<i class="fas fa-heart fa-spin" style= "color:#d83473"></i>
-    <% end %>
+    <%= link_to "お気に入りを開く",favorites_member_path(member), class:"btn btn-outline-secondary" %>
     <!--URLにcity_idが含まれる時のみ投稿フィールドを表示-->
     <% if request.parameters.include?("city_id") %>
       <%= render "public/shared/form", post: @post %>
