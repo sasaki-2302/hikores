@@ -7,11 +7,11 @@
   <%= link_to "フォローする", member_relationships_path(member.id), class:"btn btn-outline-primary", method: :post %>
 <% end %>
 
+<!--ログインしているか確認し、自分のDMボタンを表示しない処理-->
+<% if !member_signed_in? || current_member == member %>
 <!--お互いがフォローしている場合のみボタンが押せるようになる-->
-<% if current_member.following?(member) && member.following?(current_member) %>
+<% elsif current_member.following?(member) && member.following?(current_member) %>
   <%= link_to 'chatを始める', chat_path(member.id), class: "btn btn-outline-success" %>
-<!--ログインメンバーの情報が表示されているときはボタンを表示しない-->
-<% elsif current_member == member %>
 <!--link_toだと突破される可能性があるため、意味のないボタンを配置-->
 <% else %>
   <div class="btn btn-outline-success disabled">chatを始める</div>
