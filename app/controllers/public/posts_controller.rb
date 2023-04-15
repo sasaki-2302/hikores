@@ -10,7 +10,7 @@ class Public::PostsController < ApplicationController
     @post.member_id = current_member.id
     if @post.save
       flash[:notice] = "投稿が完了しました"
-      redirect_to request.referer
+      redirect_to search_path(prefecture_id: @post.prefecture.id, city_id: @post.city.id)
     else
       flash[:error] = "投稿に失敗しました"
       redirect_to request.referer

@@ -4,12 +4,16 @@
       <%= link_to image_tag(member.get_profile_image, size: '100x100', style: "border-radius: 50px;"), member_path(member.id) %><br>
       <%= link_to member.name, member_path(member.id) %>
     </div>
-    <div>
-      <%= link_to "フォロー: " + member.followings.count.to_s, member_followings_path(member.id) %>
-      <%= link_to "フォロワー: " + member.followers.count.to_s, member_followers_path(member.id) %>
+    <div class="d-flex justify-content-center">
+      <div class="mx-1" id="following_count">
+        <%= render "public/relationships/following_count", member: member %>
+      </div>
+      <div class="mx-1" id="follower_count">
+        <%= render "public/relationships/follower_count", member: member %>
+      </div>
     </div>
-    <div>
-      <%= render "public/shared/follow_btn", member: member %>
+    <div id="follow">
+      <%= render "public/relationships/follow_btn", member: member %>
     </div>
     <% if current_member == member && member.name != "guest_member" %>
       <div>

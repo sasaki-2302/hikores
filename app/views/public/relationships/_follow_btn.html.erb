@@ -2,9 +2,9 @@
 <% if !member_signed_in? || member.id == current_member.id %>
 <!--相手をフォローしているか確認-->
 <% elsif current_member.following?(member) %>
-  <%= link_to "フォロー解除", member_relationships_path(member.id), class:"btn btn-outline-danger", method: :delete %>
+  <%= link_to "フォロー解除", member_relationships_path(member.id), class:"btn btn-outline-danger", method: :delete, remote: true %>
 <% else %>
-  <%= link_to "フォローする", member_relationships_path(member.id), class:"btn btn-outline-primary", method: :post %>
+  <%= link_to "フォローする", member_relationships_path(member.id), class:"btn btn-outline-primary", method: :post, remote: true %>
 <% end %>
 
 <!--ログインしているか確認し、自分のDMボタンを表示しない処理-->

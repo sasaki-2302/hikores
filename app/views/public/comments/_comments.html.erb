@@ -1,0 +1,26 @@
+<div class="my-3">
+  コメント <%= post.comments.count %> 件
+</div>
+<% post.comments.each do |comment| %>
+  <div class="col-9 mb-2">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <%= comment.comment %>
+      </li>
+      <li class="list-group-item d-flex justify-content-between">
+        <div>
+          <%= link_to image_tag(comment.member.get_profile_image, size: '30x30', style:"border-radius: 15px;"), member_path(comment.member.id) %>
+          <%= link_to comment.member.name, member_path(comment.member.id) %>さん
+        </div>
+        <div>
+          <%= comment.created_at.strftime('%Y/%m/%d %H:%M') %>
+          <% if comment.member == current_member || admin_signed_in? %>
+            <%= link_to post_comment_path(comment.post, comment), method: :delete, remote: true, data: {confirm: "このコメントを削除しますか？"} do %>
+              <i class="far fa-trash-alt"></i>
+            <% end %>
+          <% end %>
+        </div>
+      </li>
+    </ul>
+  </div>
+<% end %>
