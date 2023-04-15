@@ -58,4 +58,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'jquery-rails'
 gem 'impressionist'
-gem 'gon'
+gem 'rails-i18n', '~> 6.0.0'

@@ -11,6 +11,9 @@
             <%= link_to "メンバー編集へ",edit_admin_member_path(@member), class: "btn btn-outline-danger" %>
           <!--メンバーがログインしていて、自分の以外の詳細ページにはボタンを表示しない、なおかつゲストにも表示しない-->
           <% elsif member_signed_in? && @member.id == current_member.id && @member.name != "guest_member" %>
+            <%= link_to edit_member_path(@member.id), class:"btn btn-outline-secondary my-2" do %>
+              プロフィールを編集 <i class="fas fa-cut"></i>
+            <% end %>
             <%= link_to "退会", member_hide_path(current_member), method: :put, "data-confirm" => "本当に退会しますか？", class: "btn btn-outline-danger" %>
           <% end %>
         </div>
