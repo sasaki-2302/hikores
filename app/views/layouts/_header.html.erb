@@ -1,22 +1,27 @@
-<header class="d-flex flex-column">
-  <div class="container">
+<header>
+  <div class="container-fluid">
     <div class="navbar">
-      <%= link_to "ロゴ", root_path %>
-      <ul>
+      <%= link_to image_tag("logo.png", size: '210x70'), root_path %>
+      <ul class="navbar-nav list-group-horizontal">
+        <!--管理者ログイン時の表示-->
         <% if admin_signed_in? %>
-          <li><%= link_to "メンバー", admin_members_path %></li>
-          <li><%= link_to "投稿", posts_path %></li>
-          <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
+          <li><%= link_to "Member", admin_members_path, class: 'btn btn-sm btn-outline-dark' %></li>
+          <li><%= link_to "Post", posts_path, class: 'btn btn-sm btn-outline-dark mx-2' %></li>
+          <li><%= link_to "Logout", destroy_admin_session_path, class: 'btn btn-sm btn-outline-dark', method: :delete %></li>
+        <!--メンバーログイン時の表示-->
         <% elsif member_signed_in? %>
-          <li><%= link_to "メンバー", members_path %></li>
-          <li><%= link_to "投稿", posts_path %></li>
-          <li><%= link_to "ログアウト", destroy_member_session_path, method: :delete %></li>
+          <li><%= link_to "Member", members_path, class: 'btn btn-sm btn-outline-dark' %></li>
+          <li><%= link_to "Post", posts_path, class: 'btn btn-sm btn-outline-dark mx-2' %></li>
+          <li><%= link_to "Guide", root_path, class: 'btn btn-sm btn-outline-dark' %></li>
+          <li><%= link_to "Contact", root_path, class: 'btn btn-sm btn-outline-dark mx-2' %></li>
+          <li><%= link_to "Logout", destroy_member_session_path, class: 'btn btn-sm btn-outline-dark', method: :delete %></li>
+        <!--未ログイン時の表示-->
         <% else %>
-          <li><%= link_to "メンバー", members_path %></li>
-          <li><%= link_to "投稿", posts_path %></li>
-          <li><%= link_to "新規登録", new_member_registration_path %></li>
-          <li><%= link_to "ログイン", new_member_session_path %></li>
-          <li><%= link_to "ゲスト", member_guest_sign_in_path, method: :post %></li>
+          <li><%= link_to "Member", members_path, class: 'btn btn-sm btn-outline-dark' %></li>
+          <li><%= link_to "Post", posts_path, class: 'btn btn-sm btn-outline-dark mx-2' %></li>
+          <li><%= link_to "Signup", new_member_registration_path, class: 'btn btn-sm btn-outline-dark' %></li>
+          <li><%= link_to "Login", new_member_session_path, class: 'btn btn-sm btn-outline-dark mx-2' %></li>
+          <li><%= link_to "Guest", member_guest_sign_in_path, class: 'btn btn-sm btn-outline-dark', method: :post %></li>
         <% end %>
       </ul>
       <div><%= render 'layouts/search' %></div>
