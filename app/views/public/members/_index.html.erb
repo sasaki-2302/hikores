@@ -1,0 +1,19 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>ユーザー名</th>
+      <th>フォロー</th>
+      <th>フォロワー</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% members.each do |member| %>
+      <tr>
+        <td><%= link_to member.name, member_path(member.id) %></td>
+        <td><%= link_to "フォロー: " + member.followings.count.to_s, member_followings_path(member.id) %></td>
+        <td><%= link_to "フォロワー: " + member.followers.count.to_s, member_followers_path(member.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

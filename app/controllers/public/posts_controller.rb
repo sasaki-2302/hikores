@@ -3,16 +3,17 @@ class Public::PostsController < ApplicationController
 
   def index
     @posts = Post.all
-    @post = Post.new
   end
 
   def create
     @post = Post.new(post_params)
     @post.member_id = current_member.id
     if @post.save
-      redirect_to posts_path
+      flash[:notice] = "投稿が完了しました"
+      redirect_to search_path(prefecture_id: @post.prefecture.id, city_id: @post.city.id)
     else
-      redirect_to root_path
+      flash[:error] = "投稿に失敗しました"
+      redirect_to request.referer
     end
   end
 
@@ -22,11 +23,9 @@ class Public::PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
   end
 
   def update
-    @post = Post.find(params[:id])
     @post.update(post_params)
     redirect_to post_path(@post.id)
   end
@@ -44,13 +43,14 @@ class Public::PostsController < ApplicationController
   end
 
   def who_is_sign_in?
-    # 未ログイン状態かを確認
+    # 未ログイン状態ならrootへ遷移させる
     if !member_signed_in? && !admin_signed_in?
-      redirect_to posts_path
+      redirect_to request.referer
     else
+      @post = Post.find(params[:id])
       # 管理者でログイン中または現在ログイン中のメンバーが投稿した内容か確認
       unless admin_signed_in? || @post.member.id == current_member.id
-        redirect_to posts_path
+        redirect_to request.referer
       end
     end
   end

@@ -12,6 +12,7 @@ import "jquery";
 import "popper.js";
 import "bootstrap";
 import "../stylesheets/application"
+import "../stylesheets/index"
 import '@fortawesome/fontawesome-free/js/all'
 import "packs/jmap.js"
 

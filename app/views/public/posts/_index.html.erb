@@ -1,33 +1,29 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th>投稿地域</th>
-      <th>タイトル</th>
-      <!--URLに"search"を含む場合、表示内容を変更-->
-      <% unless request.path.include?("search") %>
-        <th></th>
-        <th></th>
-      <% else %>
-        <th>内容</th>
-      <% end %>
-    </tr>
-  </thead>
-  <tbody>
-    <% posts.each do |post| %>
-      <tr>
-        <td>
-          <%= post.prefecture.name %>
-          <%= link_to post.city.name, search_path(prefecture_id: post.prefecture[:id], city_id: post.city[:id]) %>
-        </td>
-        <td><%= link_to post.title, post_path(post.id) %></td>
-        <!--URLに"search"を含む場合、表示内容を変更-->
-        <% unless request.path.include?("search") %>
-          <td><%= render "public/shared/favorite_btn", post: post %></td>
-          <td><%= link_to "コメント " + post.comments.count.to_s + " 件", post_path(post.id) %></td>
-        <% else %>
-          <td><%= post.body %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="index_head d-flex justify-content-center flex-wrap">
+  <% posts.each do |post| %>
+    <div class="col-xs-2 card m-1" style="width:200px; height:250px;">
+      <div class="m-2">
+        <%= link_to image_tag(post.member.get_profile_image, size: '30x30', style:"border-radius: 20px;"), member_path(post.member.id) %>
+        <%= link_to post.member.name, member_path(post.member.id) %>
+      </div>
+      <div class="card mx-auto" style="width:190px; height:180px;">
+        <!--serch_pathにpref_idとcity_idを渡すことで、都道府県名と市区町村名それぞれの検索結果を表示-->
+        <div>
+          <%= link_to post.prefecture.name, search_path(prefecture_id: post.prefecture.id) %>
+          <%= link_to post.city.name, search_path(prefecture_id: post.prefecture.id, city_id: post.city.id) %>
+        </div>
+        <!--タイトルが14文字に以上なら省略-->
+        <div class="my-1"><%= link_to post.title.truncate(13), post_path(post.id) %></div>
+        <!--投稿内容が62文字に以上なら省略定-->
+        <div><%= post.body.truncate(57) %></div>
+      </div>
+      <!--コメント・いいねを投稿内下部に固定-->
+      <div class="d-flex justify-content-between mt-auto">
+        <%= link_to "コメント " + post.comments.count.to_s + " 件", post_path(post.id) %>
+        <div id="favorite_<%= post.id %>">
+          <%= render "public/favorites/favorite_btn", post: post %>
+        </div>
+        <%= link_to "通報", root_path %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Hikores</title>
+    <title>ひこれす</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= include_gon %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= render "layouts/header" %>
-    <%= yield %>
-    <%= render "layouts/footer" %>
+  <body style="background-color:#f0ffff">
+    <div class="fixed-top">
+      <%= render "layouts/header" %>
+    </div>
+    <div class="pb-5" style="padding-top:100px;">
+      <%= yield %>
+    </div>
+    <div class="fixed-bottom">
+      <%= render 'layouts/footer' %>
+    </div>
   </body>
 </html>

@@ -3,17 +3,24 @@
     <div class="col-md-3">
       <%= render "public/shared/info", member: @member %>
     </div>
-    <div class="col-md-8">
-      <div class="form-group">
-        <%= form_with model: @member do |f| %>
-          <%= f.label :"プロフィール画像" %><br>
-          <%= f.file_field :profile_image, accept: "image/*" %><br>
-          <%= f.label :"ユーザー名" %><br>
-          <%= f.text_field :name %><br>
-          <%= f.label :"メールアドレス" %><br>
-          <%= f.text_field :email %><br>
-          <%= f.submit"更新" %>
-        <% end %>
+    <div class="col-md-5">
+      <div class="card">
+        <div class="card-header">
+          <h4>プロフィール編集</h4>
+        </div>
+        <div class="form-group">
+          <%= form_with model: @member do |f| %>
+            <%= f.label :"プロフィール画像" %><br>
+            <%= f.file_field :profile_image, accept: "image/*" %><br>
+            <%= f.label:"ユーザー名(2〜10文字)" %>
+            <%= f.text_field :name, class:"form-control" %>
+            <%= f.label:"メールアドレス" %>
+            <%= f.text_field :email, class:"form-control" %>
+            <%= f.button :type => "submit", style: "background: none;" do %>
+              <i class="far fa-paper-plane"></i>
+            <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

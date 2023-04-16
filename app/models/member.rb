@@ -16,6 +16,7 @@ class Member < ApplicationRecord
   has_many :user_rooms
   has_many :chats
   has_many :rooms, through: :user_rooms
+  validates :name, length: { minimum: 2, maximum: 10 }
 
   has_one_attached :profile_image
 
@@ -38,5 +39,15 @@ class Member < ApplicationRecord
   # is_deletedカラムがfalseかを確認
   def active_for_authentication?
     super && (self.is_deleted == false)
+  end
+  # ゲストメンバーを定義
+  def self.guest
+    # find_or_create_byはデータ検索と作成を自動で判別するRailsのメソッド
+    find_or_create_by!(name: 'guest_member', email: 'guest@example.com') do |member|
+      # ランダムな文字列を生成するRubyのメソッドの一種
+      member.password = SecureRandom.urlsafe_base64
+      # 名前をguestmemberに固定することでメンバーモデルで.guestの記述が使用できる
+      member.name = 'guest_member'
+    end
   end
 end

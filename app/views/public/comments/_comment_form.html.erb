@@ -1,0 +1,10 @@
+<div class="col-9">
+  <% if member_signed_in? %>
+    <%= form_with model: [post, comment], local: false do |f| %>
+      <%= f.text_area :comment, placeholder:"コメントを書く(2〜100文字)", class:"form-control", id:"text_area", rows:"4" %>
+      <%= f.button :type => "submit", class:"mx-auto",style: "background: none;" do %>
+        <i class="far fa-paper-plane"></i>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

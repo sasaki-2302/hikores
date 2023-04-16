@@ -5,6 +5,9 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
+  devise_scope :member do
+    post 'member/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
 
   # 管理者用
   # URL /admin/sign_in ...
@@ -16,8 +19,8 @@ Rails.application.routes.draw do
   get 'search' => 'searchs#search', as: 'search'
   # namespaceにすることでURLにadminを含む
   namespace :admin do
-    root to: 'homes#top'
-    resources :members, only: [:index, :edit, :update]
+    root to: 'members#index'
+    resources :members, only: [:edit, :update]
   end
   # scopeにすることでURLにpublicを含まない
   scope module: :public do

@@ -1,0 +1,15 @@
+// justify-content使用時に一番最後の行を左寄せにする為、空要素を表示
+// 本来beforeは先頭に表示されるがorder:1;を指定することで一番最後に表示される
+.index_head::before{
+  content:"";
+  display: block;
+  width:200px;
+  margin:4px;
+  order:1;
+}
+.index_head::after{
+  content:"";
+  display: block;
+  width:200px;
+  margin:4px;
+}

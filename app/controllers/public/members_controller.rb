@@ -1,5 +1,6 @@
 class Public::MembersController < ApplicationController
-  before_action :who_is_sign_in?, only: [:edit, :update]
+  before_action :who_is_sign_in?,     only: [:edit, :update]
+  before_action :ensure_guest_member, only: [:edit]
 
   def index
     @members = Member.all
@@ -41,7 +42,7 @@ class Public::MembersController < ApplicationController
   def member_params
     params.require(:member).permit(:name, :email, :profile_image, :is_deleted)
   end
-
+  # 投稿メンバー以外は投稿の編集ページへアクセスできないようにする
   def who_is_sign_in?
     member = Member.find(params[:id])
     # 未ログイン状態かを確認
@@ -52,6 +53,13 @@ class Public::MembersController < ApplicationController
       unless admin_signed_in? || member.id == current_member.id
         redirect_to members_path
       end
+    end
+  end
+
+  def ensure_guest_member
+    @member = Member.find(params[:id])
+    if @member.name == "guest_member"
+      redirect_to root_path , notice: 'ゲストメンバーはプロフィールの編集を行えません。'
     end
   end
 end
