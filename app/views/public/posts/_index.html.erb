@@ -19,7 +19,9 @@
       <!--コメント・いいねを投稿内下部に固定-->
       <div class="d-flex justify-content-between mt-auto">
         <%= link_to "コメント " + post.comments.count.to_s + " 件", post_path(post.id) %>
-        <%= render "public/shared/favorite_btn", post: post %>
+        <div id="favorite_<%= post.id %>">
+          <%= render "public/favorites/favorite_btn", post: post %>
+        </div>
         <%= link_to "通報", root_path %>
       </div>
     </div>

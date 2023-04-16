@@ -5,15 +5,12 @@
       <ul class="navbar-nav list-group-horizontal">
         <!--管理者ログイン時の表示-->
         <% if admin_signed_in? %>
-          <li><%= link_to "Member", admin_members_path, class: 'btn btn-sm btn-outline-dark' %></li>
-          <li><%= link_to "Post", posts_path, class: 'btn btn-sm btn-outline-dark mx-2' %></li>
-          <li><%= link_to "Logout", destroy_admin_session_path, class: 'btn btn-sm btn-outline-dark', method: :delete %></li>
         <!--メンバーログイン時の表示-->
         <% elsif member_signed_in? %>
           <li><%= link_to "Member", members_path, class: 'btn btn-sm btn-outline-dark' %></li>
           <li><%= link_to "Post", posts_path, class: 'btn btn-sm btn-outline-dark mx-2' %></li>
           <li><%= link_to "Guide", root_path, class: 'btn btn-sm btn-outline-dark' %></li>
-          <li><%= link_to "Contact", root_path, class: 'btn btn-sm btn-outline-dark mx-2' %></li>
+          <li><%= link_to "Contact", "https://forms.gle/33iokvXNf15MUP3u5", class: 'btn btn-sm btn-outline-dark mx-2' %></li>
           <li><%= link_to "Logout", destroy_member_session_path, class: 'btn btn-sm btn-outline-dark', method: :delete %></li>
         <!--未ログイン時の表示-->
         <% else %>

@@ -3,7 +3,7 @@
   <%= "♡" + post.favorites.count.to_s %>
 <!--ログインメンバーはいいねをつけることができる-->
 <% elsif post.favorited_by?(current_member) %>
-  <%= link_to "♥" + post.favorites.count.to_s, post_favorites_path(post), style: "color:#d83473", method: :delete %>
+  <%= link_to "♥" + post.favorites.count.to_s, post_favorites_path(post), style: "color:#d83473", method: :delete, remote: true %>
 <% else %>
-  <%= link_to "♡" + post.favorites.count.to_s, post_favorites_path(post), style: "color:#d83473", method: :post %>
+  <%= link_to "♡" + post.favorites.count.to_s, post_favorites_path(post), style: "color:#d83473", method: :post, remote: true %>
 <% end %>
