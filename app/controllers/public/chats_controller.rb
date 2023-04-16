@@ -3,7 +3,7 @@ class Public::ChatsController < ApplicationController
   # https://qiita.com/OmaeWa000/items/3c3863f0ed5ed25dbc1a　参照
   def create
     @chat = current_member.chats.new(chat_params)
-    render :validater unless @chat.save
+    render :error unless @chat.save
   end
 
   def show

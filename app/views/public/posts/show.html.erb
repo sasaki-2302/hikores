@@ -49,6 +49,9 @@
       <div id="comments">
         <%= render "public/comments/comments", post: @post %>
       </div>
+      <div class="errors" style="color:#d83473;">
+        <%= render "layouts/errors", obj: @comment %>
+      </div>
       <div>
         <%= render "public/comments/comment_form", post: @post, comment: @comment %>
       </div>

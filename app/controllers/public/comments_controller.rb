@@ -4,7 +4,7 @@ class Public::CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     @comment.member_id = current_member.id
     @comment.post_id = @post.id
-    @comment.save
+    render :error unless @comment.save
   end
 
   def destroy
