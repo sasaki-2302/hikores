@@ -7,15 +7,14 @@
         <% if admin_signed_in? %>
         <!--メンバーログイン時の表示-->
         <% elsif member_signed_in? %>
-          <li><%= link_to "Member", members_path, class: 'btn btn-sm btn-outline-dark' %></li>
-          <li><%= link_to "Post", posts_path, class: 'btn btn-sm btn-outline-dark mx-2' %></li>
+          <li><%= link_to "Member", members_path, class: 'btn btn-sm btn-outline-dark mx-2' %></li>
           <li><%= link_to "Guide", about_path, class: 'btn btn-sm btn-outline-dark' %></li>
           <li><%= link_to "Contact", "https://forms.gle/33iokvXNf15MUP3u5", class: 'btn btn-sm btn-outline-dark mx-2' %></li>
           <li><%= link_to "Logout", destroy_member_session_path, class: 'btn btn-sm btn-outline-dark', method: :delete %></li>
         <!--未ログイン時の表示-->
         <% else %>
           <li><%= link_to "Member", members_path, class: 'btn btn-sm btn-outline-dark' %></li>
-          <li><%= link_to "Post", posts_path, class: 'btn btn-sm btn-outline-dark mx-2' %></li>
+          <li><%= link_to "Guide", about_path, class: 'btn btn-sm btn-outline-dark mx-2' %></li>
           <li><%= link_to "Signup", new_member_registration_path, class: 'btn btn-sm btn-outline-dark' %></li>
           <li><%= link_to "Login", new_member_session_path, class: 'btn btn-sm btn-outline-dark mx-2' %></li>
           <li><%= link_to "Guest", member_guest_sign_in_path, class: 'btn btn-sm btn-outline-dark', method: :post %></li>
