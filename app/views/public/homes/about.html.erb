@@ -3,7 +3,23 @@
     <div class="info col-md-3 card">
       <%= render "public/shared/info", member: current_member %>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-8 text-center">
+      <div class="card">
+        <div class="card-header">
+          <h1>ひこれす使用方法について</h1>
+        </div>
+        <h3>
+          <p>情報を見たい県名をクリック<br>
+            <%= image_tag "explanation_1" %><br>
+            <br>
+            右上のプルダウンから市区町村名で絞り込みもできます<br>
+            <%= image_tag "explanation_2" %><br>
+            <br>
+            市区町村ページから投稿が可能です(ログイン中のみ)
+            <%= image_tag "explanation_3" %><br>
+          </p>
+        </h3>
+      </div>
     </div>
   </div>
 </div>
