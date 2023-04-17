@@ -1,10 +1,12 @@
 <div class="container">
   <div class="row">
-    <div class="info col-md-3">
+    <div class="info col-md-3 card">
       <%= render "public/shared/info", member: current_member %>
     </div>
-    <div class="col-md-8 card">
-      <%= render "public/members/index", members: @members %>
+    <div class="col-md-8">
+      <div class="card">
+        <%= render "public/members/index", members: @members %>
+      </div>
     </div>
   </div>
 </div>
