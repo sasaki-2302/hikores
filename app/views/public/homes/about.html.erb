@@ -1,9 +1,42 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3">
+    <div class="info col-md-3 card">
       <%= render "public/shared/info", member: current_member %>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-8 text-center">
+      <div class="card">
+        <div class="card-header">
+          <h2>ひこれす利用方法について</h2>
+        </div>
+        <h4>
+          <p>情報を見たい都道府県名をクリック<br>
+            <%= image_tag "explanation_1" %><br>
+            <br>
+            右上のプルダウンから市区町村名で絞り込めます<br>
+            <%= image_tag "explanation_2" %><br>
+            <br>
+            市区町村ページから地域ごとの投稿が可能です(ログイン中のみ)
+            <%= image_tag "explanation_3" %><br>
+            <br>
+            <%= link_to "こちら", root_path %>からTOPに戻れます。
+          </p>
+        </h4>
+      </div>
+      <div class="card mt-5">
+        <div class="card-header">
+          <h2>このサイトについて</h2>
+        </div>
+        <h5>
+          <p>
+            引っ越し先の地域を決める際の指標になるサイト<br>
+            <br>
+            引越し先を選ぶ基準は人それぞれあると思います。<br>
+            会社から近い場所を選んだり、家賃との兼ね合いで場所を考えたり、リモートワークを推奨している会社ならあえて都会から離れた場所に住む等。<br>
+            こんなプラスな制度があるなら引っ越したい、逆にこんなマイナス面があると知っていれば引っ越さなかった、誰しも悩んだ経験があるはずです。<br>
+            このサイトはユーザー投稿型の地域情報を共有するサイトであり、その地域が引っ越し先として自分に向いているのかを見極める指標になればという思いで作りました。
+          </p>
+        </h5>
+      </div>
     </div>
   </div>
 </div>

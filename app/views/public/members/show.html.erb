@@ -1,24 +1,26 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3">
+    <div class="info col-md-3 card">
       <%= render "public/shared/info", member: @member %>
     </div>
-    <div class="col-md-8 card px-0">
-      <div class="card-header d-flex justify-content-between">
-        <h4><%= @member.name %>さんの投稿一覧</h4>
-        <div>
-          <% if admin_signed_in? %>
-            <%= link_to "メンバー編集へ",edit_admin_member_path(@member), class: "btn btn-outline-danger" %>
-          <!--メンバーがログインしていて、自分の以外の詳細ページにはボタンを表示しない、なおかつゲストにも表示しない-->
-          <% elsif member_signed_in? && @member.id == current_member.id && @member.name != "guest_member" %>
-            <%= link_to edit_member_path(@member.id), class:"btn btn-outline-secondary my-2" do %>
-              プロフィールを編集 <i class="fas fa-cut"></i>
+    <div class="col-md-8">
+      <div class="card px-0">
+        <div class="card-header d-flex justify-content-between">
+          <h4><%= @member.name %>さんの投稿一覧</h4>
+          <div>
+            <% if admin_signed_in? %>
+              <%= link_to "メンバー編集へ",edit_admin_member_path(@member), class: "btn btn-outline-danger" %>
+            <!--メンバーがログインしていて、自分の以外の詳細ページにはボタンを表示しない、なおかつゲストにも表示しない-->
+            <% elsif member_signed_in? && @member.id == current_member.id && @member.name != "guest_member" %>
+              <%= link_to edit_member_path(@member.id), class:"btn btn-outline-secondary my-2" do %>
+                プロフィールを編集 <i class="fas fa-cut"></i>
+              <% end %>
+              <%= link_to "退会", member_hide_path(current_member), method: :put, "data-confirm" => "本当に退会しますか？", class: "btn btn-outline-danger" %>
             <% end %>
-            <%= link_to "退会", member_hide_path(current_member), method: :put, "data-confirm" => "本当に退会しますか？", class: "btn btn-outline-danger" %>
-          <% end %>
+          </div>
         </div>
+        <%= render 'public/posts/index', posts: @posts %>
       </div>
-      <%= render 'public/posts/index', posts: @posts %>
     </div>
   </div>
 </div>
