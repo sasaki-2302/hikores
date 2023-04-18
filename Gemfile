@@ -65,6 +65,7 @@ gem 'devise'
 gem 'jquery-rails'
 gem 'impressionist'
 gem 'rails-i18n', '~> 6.0.0'
+gem 'whenever', require: false
 gem "net-smtp"
 gem "net-pop"
 gem "net-imap"

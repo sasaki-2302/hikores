@@ -12,6 +12,7 @@ module Hikores
     config.load_defaults 6.1
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :local
+    config.paths.add 'lib', eager_load: true
     I18n.config.available_locales = :ja
     # デフォルトのlocaleを日本語(:ja)にする
     I18n.config.default_locale = :ja

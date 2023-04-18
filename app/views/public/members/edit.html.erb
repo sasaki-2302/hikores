@@ -12,7 +12,7 @@
           <%= form_with model: @member do |f| %>
             <%= f.label :"プロフィール画像" %><br>
             <%= f.file_field :profile_image, accept: "image/*" %><br>
-            <%= f.label:"ユーザー名(2〜10文字)" %>
+            <%= f.label:"ユーザー名(2〜12文字)" %>
             <%= f.text_field :name, class:"form-control" %>
             <%= f.label:"メールアドレス" %>
             <%= f.text_field :email, class:"form-control" %>
