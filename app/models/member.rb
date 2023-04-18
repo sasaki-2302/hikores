@@ -4,11 +4,12 @@ class Member < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :posts, dependent: :destroy
+  has_many :posts,     dependent: :destroy
+  has_many :comments,  dependent: :destroy
   has_many :favorites, dependent: :destroy
   # has_manyで仮の名前,class_nameで本来のモデル,foreign_keyで参照するカラムを指定
   has_many :followeres, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
-  has_many :followeds, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+  has_many :followeds,  class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   # viewで使用  上記の仮テーブルを通ってsourceで本来のカラムを参照する
   has_many :followings, through: :followeres, source: :followed
   has_many :followers,  through: :followeds,  source: :follower
@@ -16,7 +17,7 @@ class Member < ApplicationRecord
   has_many :user_rooms
   has_many :chats
   has_many :rooms, through: :user_rooms
-  validates :name, length: { minimum: 2, maximum: 10 }
+  validates :name, length: { minimum: 2, maximum: 12 }
 
   has_one_attached :profile_image
 
