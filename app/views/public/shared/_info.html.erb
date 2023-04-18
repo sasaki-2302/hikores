@@ -1,6 +1,7 @@
 <div class="mt-2 text-center">
   <% if member_signed_in? %>
-    <div class="mb-2">
+    <div style="font-size:15px;"><%= current_member.name %>でログイン中</div>
+    <div class="my-2">
       <%= link_to image_tag(member.get_profile_image, size: '100x100', style: "border-radius: 50px;"), member_path(member.id) %><br>
       <%= link_to member.name, member_path(member.id) %>
     </div>
@@ -52,7 +53,7 @@
       また
       <%= link_to "こちら", member_guest_sign_in_path, method: :post %>
       からゲストとして機能を体験することも可能です。<br>
-      (1時間後に自動的にログアウトされ、投稿内容も消去されます(未実装))
+      (30分ごとに自動で投稿内容が消去されます)
     </p>
   <% end %>
 </div>

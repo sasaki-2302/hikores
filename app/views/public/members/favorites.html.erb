@@ -1,13 +1,15 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3 card", style="background-color:#ffffff;">
+    <div class="col-md-3 card">
       <%= render "public/shared/info", member: @member %>
     </div>
-    <div class="col-md-8 card px-0">
-      <div class="card-header">
-        <h3 class="my-auto"><%= @member.name %>さんのお気に入り一覧</h3>
+    <div class="col-md-8">
+      <div class="card px-0">
+        <div class="card-header">
+          <h3 class="my-auto"><%= @member.name %>さんのお気に入り一覧</h3>
+        </div>
+        <%= render 'public/posts/index', posts: @favorite_posts %>
       </div>
-      <%= render 'public/posts/index', posts: @favorite_posts %>
     </div>
   </div>
 </div>

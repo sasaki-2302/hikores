@@ -51,4 +51,12 @@ class Member < ApplicationRecord
       member.name = 'guest_member'
     end
   end
+  # guestの投稿、コメント、いいねを自動削除
+  # https://qiita.com/Tanesaka/items/74d608d4d1a8a6c0a47a　参照
+  def self.data_reset
+    member = Member.find_by(email: "guest@example.com")
+    member.posts.destroy_all
+    member.comments.destroy_all
+    member.favorites.destroy_all
+  end
 end
