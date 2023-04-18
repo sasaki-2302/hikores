@@ -43,14 +43,14 @@ class Public::PostsController < ApplicationController
   end
 
   def who_is_sign_in?
-    # 未ログイン状態ならrootへ遷移させる
+    # 未ログイン状態なら元のページへ遷移させる
     if !member_signed_in? && !admin_signed_in?
-      redirect_to request.referer
+      redirect_to post_path(params[:id])
     else
       @post = Post.find(params[:id])
       # 管理者でログイン中または現在ログイン中のメンバーが投稿した内容か確認
       unless admin_signed_in? || @post.member.id == current_member.id
-        redirect_to request.referer
+        redirect_to post_path(params[:id])
       end
     end
   end
