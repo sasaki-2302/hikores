@@ -3,32 +3,28 @@
     <div class="info col-md-3 card">
       <%= render "public/shared/info" %>
     </div>
-    <div class="col-md-7">
-      <h2>ログイン</h2>
-      <%= form_with model: @admin, url: admin_session_path do |f| %>
-        <div class="field">
-          <%= f.label :メールアドレス %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <div class="col-md-5">
+      <div class="card px-0">
+        <div class="card-header">
+          <h4>ログイン</h4>
         </div>
-
-        <div class="field">
-          <%= f.label :パスワード %><br />
-          <%= f.password_field :password, autocomplete: "current-password" %>
+        <div class="form-group">
+          <%= form_with model: @admin, url: admin_session_path do |f| %>
+            <%= f.label:"メールアドレス" %><br>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+            <%= f.label:"パスワード" %>
+            <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+            <% if devise_mapping.rememberable? %>
+              <%= f.check_box :remember_me %>
+              <%= f.label:remember_me %><br>
+            <% end %>
+            <%= f.button :type => "submit", class: "mt-3", style: "background: none;" do %>
+              <i class="fas fa-sign-in-alt"></i>
+            <% end %>
+          <% end %>
+          <%= render "admin/shared/links" %>
         </div>
-
-        <% if devise_mapping.rememberable? %>
-          <div class="field">
-            <%= f.check_box :remember_me %>
-            <%= f.label :remember_me %>
-          </div>
-        <% end %>
-
-        <div class="actions">
-          <%= f.submit "ログイン" %>
-        </div>
-      <% end %>
-
-      <%= render "admin/shared/links" %>
+      </div>
     </div>
   </div>
 </div>
