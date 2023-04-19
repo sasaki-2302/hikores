@@ -1,4 +1,7 @@
 class Admin::ReportsController < ApplicationController
+  # 管理者でログインしていなければadminを含むURLにアクセスできないようにする
+  before_action :authenticate_admin!
+
   def index
     @reports = Report.all
   end

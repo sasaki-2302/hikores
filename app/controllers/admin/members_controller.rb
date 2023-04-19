@@ -6,9 +6,6 @@ class Admin::MembersController < ApplicationController
     @members = Member.all
   end
 
-  def show
-  end
-
   def edit
     @member = Member.find(params[:id])
   end

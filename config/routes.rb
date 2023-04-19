@@ -19,8 +19,8 @@ Rails.application.routes.draw do
   get 'search' => 'searchs#search', as: 'search'
   # namespaceにすることでURLにadminを含む
   namespace :admin do
-    root to: 'members#index'
-    resources :members, only: [:edit, :update]
+    root to: 'reports#index'
+    resources :members, only: [:index, :edit, :update]
     resources :reports, only: [:index, :show, :update]
   end
   # scopeにすることでURLにpublicを含まない

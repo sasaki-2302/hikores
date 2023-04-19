@@ -32,7 +32,7 @@
   <% elsif admin_signed_in? %>
     <p>管理者にてログイン中</p>
     <%= link_to "Report", admin_reports_path, class: 'btn btn-block btn-outline-dark' %>
-    <%= link_to "Member", admin_root_path, class: 'btn btn-block btn-outline-dark my-2' %>
+    <%= link_to "Member", admin_members_path, class: 'btn btn-block btn-outline-dark my-2' %>
     <%= link_to "Post", posts_path, class: 'btn btn-block btn-outline-dark' %>
     <%= link_to "Logout", destroy_admin_session_path, class: 'btn btn-block btn-outline-dark mt-2', method: :delete %>
     </ul>

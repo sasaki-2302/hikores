@@ -4,6 +4,7 @@
       <%= render "public/shared/info" %>
     </div>
     <div class="col-md-6">
+      <div class="mb-3" style="font-size:20px; color:#008000;"><%= flash[:notice] %></div>
       <div class="card">
         <div class="card-header">
           <h4>通報一覧</h4>
@@ -21,7 +22,7 @@
             <% @reports.each do |report| %>
               <tr>
                 <td>
-                  <%= link_to report.id, admin_report_path(report) %>
+                  <%= report.id %>
                 </td>
                 <td>
                   <%= link_to report.reported.name, member_path(report.reported.id) %>
@@ -31,7 +32,11 @@
                 </td>
                 <td>
                   <!--enumで定義した日本語を呼び出す-->
-                  <%= report.status_i18n %>
+                  <% if report.status_i18n == "対応済み"  %>
+                    <%= link_to report.status_i18n, admin_report_path(report), style: "color: #28a745;" %>
+                  <% else %>
+                    <%= link_to report.status_i18n, admin_report_path(report), style: "color: #dc3545;" %>
+                  <% end %>
                 </td>
               </tr>
             <% end %>
