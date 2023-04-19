@@ -1,6 +1,6 @@
 <header>
   <div class="container-fluid">
-    <div class="navbar">
+    <div class="navbar d-flex">
       <%= link_to image_tag("logo.png", size: '210x70'), root_path %>
       <ul class="navbar-nav list-group-horizontal">
         <!--管理者ログイン時の表示-->
@@ -20,7 +20,7 @@
           <li><%= link_to "Guest", member_guest_sign_in_path, class: 'btn btn-sm btn-outline-dark', method: :post %></li>
         <% end %>
       </ul>
-      <div><%= render 'layouts/search' %></div>
+      <div><%= render 'searchs/search' %></div>
     </div>
   </div>
 </header>

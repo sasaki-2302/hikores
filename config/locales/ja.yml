@@ -1,8 +1,7 @@
 ja:
-  views:
-    pagination:
-      first: '<<'
-      last: '>>'
-      previous: '<'
-      next: '>'
-      truncate: '...'
+  enums:
+    report:
+      status:
+        wait: "未対応"
+        keep: "対応中"
+        finish: "対応済み"

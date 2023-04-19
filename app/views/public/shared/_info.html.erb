@@ -1,6 +1,6 @@
 <div class="mt-2 text-center">
   <% if member_signed_in? %>
-    <div style="font-size:15px;"><%= current_member.name %>でログイン中</div>
+    <div class="card" style="font-size:15px;"><%= current_member.name %>でログイン中</div>
     <div class="my-2">
       <%= link_to image_tag(member.get_profile_image, size: '100x100', style: "border-radius: 50px;"), member_path(member.id) %><br>
       <%= link_to member.name, member_path(member.id) %>
@@ -31,9 +31,10 @@
 
   <% elsif admin_signed_in? %>
     <p>管理者にてログイン中</p>
-    <%= link_to "Member", admin_root_path, class: 'btn btn-block btn-outline-dark' %>
-    <%= link_to "Post", posts_path, class: 'btn btn-block btn-outline-dark my-2' %>
-    <%= link_to "Logout", destroy_admin_session_path, class: 'btn btn-block btn-outline-dark', method: :delete %>
+    <%= link_to "Report", admin_reports_path, class: 'btn btn-block btn-outline-dark' %>
+    <%= link_to "Member", admin_root_path, class: 'btn btn-block btn-outline-dark my-2' %>
+    <%= link_to "Post", posts_path, class: 'btn btn-block btn-outline-dark' %>
+    <%= link_to "Logout", destroy_admin_session_path, class: 'btn btn-block btn-outline-dark mt-2', method: :delete %>
     </ul>
   <% else %>
     <p>
@@ -53,7 +54,12 @@
       また
       <%= link_to "こちら", member_guest_sign_in_path, method: :post %>
       からゲストとして機能を体験することも可能です。<br>
-      (30分ごとに自動で投稿内容が消去されます)
+      (30分ごとに自動で投稿内容が消去されます)<br>
+      <br>
+      <br>
+      <%= link_to "こちら", "https://forms.gle/33iokvXNf15MUP3u5" %>
+      から運営への問い合わせが可能です。<br>
+      ログイン後はContactよりお願い致します。
     </p>
   <% end %>
 </div>

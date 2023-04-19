@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+    <div class="info col-md-3 card">
+      <%= render "public/shared/info" %>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h4>通報一覧</h4>
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>通報ID</th>
+              <th>会員名</th>
+              <th>通報者</th>
+              <th>ステータス</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @reports.each do |report| %>
+              <tr>
+                <td>
+                  <%= link_to report.id, admin_report_path(report) %>
+                </td>
+                <td>
+                  <%= link_to report.reported.name, member_path(report.reported.id) %>
+                </td>
+                <td>
+                  <%= link_to report.reporter.name, member_path(report.reporter.id) %>
+                </td>
+                <td>
+                  <!--enumで定義した日本語を呼び出す-->
+                  <%= report.status_i18n %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

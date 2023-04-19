@@ -22,7 +22,7 @@
         <div id="favorite_<%= post.id %>">
           <%= render "public/favorites/favorite_btn", post: post %>
         </div>
-        <%= link_to "通報", root_path %>
+        <%= link_to "通報", new_member_report_path(post.member.id) %>
       </div>
     </div>
   <% end %>

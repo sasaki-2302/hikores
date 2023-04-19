@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="info col-md-3 card">
+      <%= render "public/shared/info" %>
+    </div>
+    <div class="col-md-6">
+      <div class="mb-3" style="font-size:20px; color:#008000;"><%= flash[:notice] %></div>
+      <div class="card">
+        <div class="card-header">
+          <h4>通報ID : <%= @report.id %></h4>
+        </div>
+        <div class="col-md-12 card-body">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              対象者 : <%= link_to @report.reported.name, member_path(@report.reported.id) %>
+            </li>
+            <li class="list-group-item">
+              URL : <%= @report.url %>
+            </li>
+            <li class="list-group-item">
+              理由 : <%= @report.reason %>
+            </li>
+            <li class="list-group-item">
+              通報者 : <%= link_to @report.reporter.name, member_path(@report.reporter.id) %>
+            </li>
+            <li class="list-group-item d-flex">
+              <div class="mr-2">
+                現在 : <%= @report.status_i18n %>
+              </div>
+              <%= form_with model:@report, url:admin_report_path(@report), method: :patch, local: true do |f| %>
+                <%= f.select :status, Report.statuses.keys.map { |k| [t("enums.report.status.#{k}"), k] } %>
+                <%= f.submit '更新' %>
+              <% end %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

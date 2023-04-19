@@ -4,7 +4,7 @@
       <%= render "public/shared/info", member: @post.member %>
     </div>
     <div class="col-md-6">
-      <div class="card" style="height:420px;">
+      <div class="card">
         <div class="d-flex justify-content-around mt-3">
           <div>
             <%= link_to image_tag(@post.member.get_profile_image, size: '30x30', style:"border-radius: 20px;"), member_path(@post.member.id) %>
@@ -38,11 +38,16 @@
           </ul>
         </div>
         <!--いいねを投稿内下部に固定-->
-        <div class="d-flex justify-content-end mt-auto">
-          <div id="favorite_<%= @post.id %>">
-            <%= render "public/favorites/favorite_btn", post: @post %>
+        <div class="d-flex justify-content-between mt-auto">
+          <div>
+            <%= @post.created_at.strftime('%Y/%m/%d %H:%M') %>
           </div>
-          <%= link_to "通報", root_path %>
+          <div class="d-flex">
+            <div id="favorite_<%= @post.id %>">
+              <%= render "public/favorites/favorite_btn", post: @post %>
+            </div>
+            <%= link_to "通報", new_member_report_path(@post.member.id) %>
+          </div>
         </div>
       </div>
       <!--コメント表示-->

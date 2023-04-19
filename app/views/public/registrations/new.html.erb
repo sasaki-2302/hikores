@@ -4,7 +4,10 @@
       <%= render "public/shared/info", member: current_member %>
     </div>
     <div class="col-md-5">
-      <%= render "public/shared/error_messages", resource: resource %>
+      <div class="errors text-center">
+        <div class="mb-3" style="font-size:20px; color:#FF0000;"><%= flash[:error] %></div>
+        <%= render "public/shared/error_messages", resource: resource %>
+      </div>
       <div class="card px-0">
         <div class="card-header">
           <h4>新規登録</h4>

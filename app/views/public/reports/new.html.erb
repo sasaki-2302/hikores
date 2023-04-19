@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="info col-md-3 card">
+      <%= render "public/shared/info", member: @member %>
+    </div>
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header d-flex justify-content-between">
+          <h4><%= @member.name %>さんの通報フォーム</h4>
+        </div>
+        <div>
+          <%= form_with model:[@member, @report] do |f| %>
+            <div class="form-group">
+              <%= f.label"URL" %>
+              <%= f.text_field :url, placeholder:"該当の投稿など通報理由に関連したURLをご記入下さい(50文字まで)", class:"form-control" %>
+              <%= f.label"通報理由" %>
+              <%= f.text_area :reason, rows:'3', placeholder:"通報理由をご記入下さい(200文字まで)", class:"form-control" %>
+              <%= f.submit "通報する", class: "btn btn-danger" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

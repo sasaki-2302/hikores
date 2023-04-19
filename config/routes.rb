@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'members#index'
     resources :members, only: [:edit, :update]
+    resources :reports, only: [:index, :show, :update]
   end
   # scopeにすることでURLにpublicを含まない
   scope module: :public do
@@ -30,11 +31,12 @@ Rails.application.routes.draw do
       resource  :favorites, only: [:create, :destroy]
     end
     # relationshipsはmemberモデルにネストする
-    resources  :members,       only: [:index, :show, :edit, :update] do
-      resource :relationships, only: [:create, :destroy]
+    resources   :members,       only: [:index, :show, :edit, :update] do
+      resources :reports,       only: [:new, :create]
+      resource  :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers'  => 'relationships#followers',  as: 'followers'
-      put 'hide' => 'members#hide', as: 'hide'
+      put 'hide'       => 'members#hide',             as: 'hide'
       # member do はURLに:idを含む / collection doは含まない
       member do
        get :favorites
