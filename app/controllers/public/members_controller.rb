@@ -18,7 +18,8 @@ class Public::MembersController < ApplicationController
   def update
     @member = Member.find(params[:id])
     @member.update(member_params)
-    redirect_to member_path(@member.id)
+    flash[:notice] = "情報を更新しました"
+    redirect_to request.referer
   end
 
   def favorites
@@ -49,7 +50,7 @@ class Public::MembersController < ApplicationController
     if !member_signed_in? && !admin_signed_in?
       redirect_to members_path
     else
-      # 管理者でログイン中または現在ログイン中のメンバーが投稿した内容か確認
+      # 管理者でログイン中または現在ログイン中のメンバーか確認
       unless admin_signed_in? || member.id == current_member.id
         redirect_to members_path
       end

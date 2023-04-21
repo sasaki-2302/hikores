@@ -13,7 +13,8 @@ class Admin::MembersController < ApplicationController
   def update
     @member = Member.find(params[:id])
     @member.update(member_params)
-    redirect_to member_path(@member.id)
+    flash[:notice] = "情報を更新"
+    redirect_to request.referer
   end
 
   private

@@ -39,10 +39,13 @@
 
 ## 設計書
 ### ER図
-- https://drive.google.com/file/d/1xO2jV1y5cHltQOdC5W9YV57ZvXbkAuGJ/view?usp=share_link
+- https://drive.google.com/file/d/1xO2jV1y5cHltQOdC5W9YV57ZvXbkAuGJ
 
 ### テーブル定義書
-- https://docs.google.com/spreadsheets/d/1fnoCHRZmGs7c9PF9E5lPHbqMQi3vGC6xp5AcbgmUFDo/edit?usp=share_link
+- https://docs.google.com/spreadsheets/d/1fnoCHRZmGs7c9PF9E5lPHbqMQi3vGC6xp5AcbgmUFDo
+
+### テスト仕様書
+- https://docs.google.com/spreadsheets/d/1_w39rZOoccsaaFAm6CxYlpCIhBvmeCPF
 
 ## 開発環境
 - OS：Linux(CentOS)

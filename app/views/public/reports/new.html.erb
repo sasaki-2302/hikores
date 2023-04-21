@@ -4,6 +4,7 @@
       <%= render "public/shared/info", member: @member %>
     </div>
     <div class="col-md-8">
+      <div class="mb-3" style="font-size:20px; color:#FF0000;"><%= flash[:error] %></div>
       <div class="card">
         <div class="card-header d-flex justify-content-between">
           <h4><%= @member.name %>さんの通報フォーム</h4>
