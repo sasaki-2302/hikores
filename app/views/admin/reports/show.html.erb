@@ -4,7 +4,7 @@
       <%= render "public/shared/info" %>
     </div>
     <div class="col-md-6">
-      <div class="mb-3" style="font-size:20px; color:#008000;"><%= flash[:notice] %></div>
+      <div class="notice"><%= flash[:notice] %></div>
       <div class="card">
         <div class="card-header">
           <h4>通報ID : <%= @report.id %></h4>

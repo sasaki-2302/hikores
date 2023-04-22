@@ -4,21 +4,21 @@
       <%= render "public/shared/info", member: current_member %>
     </div>
     <div class="col-md-5">
-      <div class="card px-0">
+      <div class="card">
         <div class="card-header">
           <h5 class="text-center",id="room" data-room="<%= @room.id %>" data-member="<%= current_member.id %>"><%= @member.name %>さんとのメッセージ</h5>
         </div>
-        <div class="chat mx-auto" style="width: 400px;">
+        <div class="mx-auto my-3" id="chat">
           <% @chats.each do |chat| %>
             <% if chat.member_id == current_member.id %>
-              <div class="d-flex justify-content-end my-2">
-                <p class="my-auto m-1" style="background-color:#9EE9FA; border-radius: 4px;"><%= chat.chat %></p>
+              <div class="d-flex justify-content-end my-2 py-2">
+                <p class="my-auto m-1 px-1" style="background-color:#FFFFFF; border-radius: 4px;"><%= chat.chat, id= "button" %></p>
                 <%= image_tag(current_member.get_profile_image, size: '30x30', style: "border-radius: 15px;") %>
               </div>
             <% else %>
-              <div class="d-flex justify-content-start my-2">
+              <div class="d-flex justify-content-start my-2 py-2">
                 <%= image_tag(chat.member.get_profile_image, size: '30x30', style: "border-radius: 15px;") %>
-                <p class="my-auto" style="background-color:#9EE9FA; border-radius: 4px;"><%= chat.chat %></p>
+                <p class="my-auto m-1 px-1" style="background-color:#FFFFFF; border-radius: 4px;"><%= chat.chat %></p>
               </div>
             <% end %>
           <% end %>

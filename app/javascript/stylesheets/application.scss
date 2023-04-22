@@ -5,3 +5,20 @@
   background-color:#ffffff;
   max-height:650px;
 }
+
+.notice{
+  font-size:20px;
+  color:#008000;
+}
+
+.error{
+  font-size:20px;
+  color:#FF0000;
+}
+
+#chat{
+  width: 400px;
+  height: 400px;
+  background-color: #9EE9FA;
+  overflow: auto;
+}
