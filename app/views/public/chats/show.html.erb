@@ -39,3 +39,18 @@
     </div>
   </div>
 </div>
+<!--https://qiita.com/kenta-nishimoto-1111/items/f58342c202d6c752c731　参照-->
+<script>
+  window.onload = function() {
+  // ↪︎ windowがロードされた時にアクションを実行するように設定
+  if (document.getElementById("chat")) {
+    // ↪︎ areaのIDがある場合に処理を実行させる（これがないとチャット画面がなくても常にJavaScriptが動いてしまいます）
+    var scrollPosition = document.getElementById("chat").scrollTop;
+    // ↪︎ area要素のスクロールされた時の最も高い場所を取得
+    var scrollHeight = document.getElementById("chat").scrollHeight;
+    // ↪︎ area要素自体の最も高い場所を取得
+    document.getElementById("chat").scrollTop = scrollHeight;
+    // ↪︎ area要素のスクロールされた時の最も高い場所をarea要素自体の最も高い場所として指定してあげる
+  }
+}
+</script>
