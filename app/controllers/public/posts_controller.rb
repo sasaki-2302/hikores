@@ -2,7 +2,7 @@ class Public::PostsController < ApplicationController
   before_action :who_is_sign_in?, only: [:edit, :update]
 
   def index
-    @posts = Post.all
+    @posts = Post.all.page(params[:page]).per(9)
   end
 
   def create

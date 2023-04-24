@@ -16,6 +16,7 @@ import "../stylesheets/index"
 import '@fortawesome/fontawesome-free/js/all'
 import "packs/jmap.js"
 import "packs/jmap_setting.js"
+import "packs/jscroll.js"
 
 Rails.start()
 Turbolinks.start()

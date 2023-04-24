@@ -22,3 +22,8 @@
   background-color: #9EE9FA;
   overflow: auto;
 }
+
+// 自動スクロール時ページネーションを非表示にする
+.pagination {
+  display: none;
+}

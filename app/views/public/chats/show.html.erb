@@ -12,7 +12,7 @@
           <% @chats.each do |chat| %>
             <% if chat.member_id == current_member.id %>
               <div class="d-flex justify-content-end my-2 py-2">
-                <p class="my-auto m-1 px-1" style="background-color:#FFFFFF; border-radius: 4px;"><%= chat.chat, id= "button" %></p>
+                <p class="my-auto m-1 px-1" style="background-color:#FFFFFF; border-radius: 4px;"><%= chat.chat %></p>
                 <%= image_tag(current_member.get_profile_image, size: '30x30', style: "border-radius: 15px;") %>
               </div>
             <% else %>

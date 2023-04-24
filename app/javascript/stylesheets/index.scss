@@ -3,13 +3,14 @@
 .index_head::before{
   content:"";
   display: block;
-  width:200px;
-  margin:4px;
-  order:1;
+  width: 200px;
+  margin: 4px;
+  order: 1;
 }
+
 .index_head::after{
   content:"";
   display: block;
-  width:200px;
-  margin:4px;
+  width: 200px;
+  margin: 4px;
 }
