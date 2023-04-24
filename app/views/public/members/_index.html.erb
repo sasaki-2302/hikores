@@ -1,6 +1,7 @@
-<table class="table">
+<table class="table mx-auto">
   <thead>
     <tr>
+      <th></th>
       <th>ユーザー名</th>
       <th>フォロー</th>
       <th>フォロワー</th>
@@ -10,6 +11,7 @@
   <tbody>
     <% members.each do |member| %>
       <tr>
+        <td><%= link_to image_tag(member.get_profile_image, size: '50x50', style: "border-radius: 25px;"), member_path(member.id) %></td>
         <td><%= link_to member.name, member_path(member.id) %></td>
         <td><%= link_to "フォロー: " + member.followings.count.to_s, member_followings_path(member.id) %></td>
         <td><%= link_to "フォロワー: " + member.followers.count.to_s, member_followers_path(member.id) %></td>
