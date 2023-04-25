@@ -28,7 +28,9 @@
       </div>
     <% end %>
   </div>
-  <%= paginate @posts %>
+  <% unless request.path.include?("favorites") %>
+    <%= paginate @posts %>
+  <% end %>
 </div>
 
 <!--https://toshpit.com/rails-jscroll-infinitescroll/　参照-->
