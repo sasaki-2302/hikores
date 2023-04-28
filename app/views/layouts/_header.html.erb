@@ -2,27 +2,27 @@
   <div class="container-fluid">
     <div class="navbar d-flex">
       <%= link_to image_tag("logo.png", size: '210x70'), root_path %>
-      <ul class="navbar-nav list-group-horizontal">
+      <ul class="navbar-nav list-group-horizontal" id="sp-menu">
         <!--管理者ログイン時の表示-->
         <% if admin_signed_in? %>
         <!--メンバーログイン時の表示-->
         <% elsif member_signed_in? %>
-          <li><%= link_to "Post", posts_path, class: 'btn btn-sm btn-outline-dark' %></li>
-          <li><%= link_to "Member", members_path, class: 'btn btn-sm btn-outline-dark mx-2' %></li>
-          <li><%= link_to "Guide", about_path, class: 'btn btn-sm btn-outline-dark' %></li>
-          <li><%= link_to "Contact", "https://forms.gle/33iokvXNf15MUP3u5", class: 'btn btn-sm btn-outline-dark mx-2' %></li>
-          <li><%= link_to "Logout", destroy_member_session_path, class: 'btn btn-sm btn-outline-dark', method: :delete %></li>
+          <li><%= link_to "Post", posts_path %></li>
+          <li><%= link_to "Member", members_path %></li>
+          <li><%= link_to "Guide", about_path %></li>
+          <li><%= link_to "Contact", "https://forms.gle/33iokvXNf15MUP3u5"  %></li>
+          <li><%= link_to "Logout", destroy_member_session_path, method: :delete %></li>
         <!--未ログイン時の表示-->
         <% else %>
-          <li><%= link_to "Post", posts_path, class: 'btn btn-sm btn-outline-dark mr-2' %></li>
-          <li><%= link_to "Member", members_path, class: 'btn btn-sm btn-outline-dark' %></li>
-          <li><%= link_to "Guide", about_path, class: 'btn btn-sm btn-outline-dark mx-2' %></li>
-          <li><%= link_to "Signup", new_member_registration_path, class: 'btn btn-sm btn-outline-dark' %></li>
-          <li><%= link_to "Login", new_member_session_path, class: 'btn btn-sm btn-outline-dark mx-2' %></li>
-          <li><%= link_to "Guest", member_guest_sign_in_path, class: 'btn btn-sm btn-outline-dark', method: :post %></li>
+          <li><%= link_to "Post", posts_path %></li>
+          <li><%= link_to "Member", members_path %></li>
+          <li><%= link_to "Guide", about_path %></li>
+          <li><%= link_to "Signup", new_member_registration_path %></li>
+          <li><%= link_to "Login", new_member_session_path %></li>
+          <li><%= link_to "Guest", member_guest_sign_in_path, method: :post %></li>
         <% end %>
+        <li><%= render 'searchs/search' %></li>
       </ul>
-      <div><%= render 'searchs/search' %></div>
       <div id="hm-icon">
         <a class="menu-trigger" href="#">
           <span></span>
@@ -33,3 +33,13 @@
     </div>
   </div>
 </header>
+
+<script>
+  $(function() {
+    $('.menu-trigger').on('click', function(event) {
+      $(this).toggleClass('active');
+      $('#sp-menu').fadeToggle();
+      event.preventDefault();
+    });
+  });
+</script>
