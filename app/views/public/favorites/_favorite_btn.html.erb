@@ -1,6 +1,6 @@
 <!--ログインメンバー以外にはいいね数のみを表示-->
 <% if !member_signed_in? %>
-  <%= "♡" + post.favorites.count.to_s %>
+  <span style="color:#d83473"><%= "♡" + post.favorites.count.to_s %></span>
 <!--ログインメンバーはいいねをつけることができる-->
 <% elsif post.favorited_by?(current_member) %>
   <%= link_to "♥" + post.favorites.count.to_s, post_favorites_path(post), style: "color:#d83473", method: :delete, remote: true %>

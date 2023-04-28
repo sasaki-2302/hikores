@@ -1,7 +1,10 @@
 <div class="mt-2 text-center">
   <% if member_signed_in? %>
-    <div class="card" style="font-size:15px;"><%= current_member.name %>でログイン中</div>
-    <div class="my-2">
+    <div class="card" style="font-size:15px;">
+      <%= current_member.name %>でログイン中
+      <%= link_to "ログアウトする", destroy_member_session_path, method: :delete %>
+    </div>
+    <div class="my-4">
       <%= link_to image_tag(member.get_profile_image, size: '100x100', style: "border-radius: 50px;"), member_path(member.id) %><br>
       <%= link_to member.name, member_path(member.id) %>
     </div>
