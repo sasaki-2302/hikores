@@ -28,7 +28,7 @@ set :environment, rails_env
 # set :output, "#{Rails.root}/log/cron.log"
 
 #10分に一度、data_resetメソッドを実行　ログは生成しないようにする
-every 5.minute do
+every 1.minute do
   # begin
     runner "Member.data_reset"
   # rescue => e

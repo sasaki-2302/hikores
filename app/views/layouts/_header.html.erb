@@ -37,7 +37,7 @@
     </div>
   </div>
 </header>
-
+<!--ハンバーガーメニューの動作-->
 <script>
   $(function() {
     $('.menu-trigger').on('click', function(event) {
@@ -54,5 +54,11 @@
     	};
     	event.preventDefault();
     });
+  });
+</script>
+<!--ブラウザバック時に強制リロードする(メニューを開いたままブラウザバックすると、メニューが開いた状態で表示される為回避策)-->
+<script>
+  window.addEventListener('popstate', function (e) {
+    window.location.reload();
   });
 </script>
