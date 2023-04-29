@@ -46,12 +46,24 @@
   transform: translateY(-15px) rotate(45deg);
   background-color: #fff;
 }
+// sp-menu表示時にmain要素をクリックできないようにする
+#main_hidden {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.1);
+  color: #fff;
+  width: 100%;
+  min-height: 100%;
+  display: none;
+  z-index: 8;
+}
 // sp-menu表示オプション
 #sp-menu {
   position: fixed;
   top: 0;
   right: 0;
-  background-color: rgba(0,0,0,0.7);
+  background-color: rgba(0,0,0,0.8);
   color: #fff;
   width: 30%;
   min-height: 100%;

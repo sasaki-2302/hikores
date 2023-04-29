@@ -2,6 +2,9 @@
   <div class="container-fluid">
     <div class="navbar d-flex">
       <%= link_to image_tag("logo.png", size: '210x70'), root_path %>
+      <!--sp-menu表示時にmain要素をクリックできないようにする-->
+      <div id="main_hidden"></div>
+      <!--ハンバーガーメニュークリック時に表示される-->
       <ul class="navbar-nav list-group-horizontal" id="sp-menu">
         <!--管理者ログイン時の表示-->
         <% if admin_signed_in? %>
@@ -23,6 +26,7 @@
         <% end %>
         <li><%= render 'searchs/search' %></li>
       </ul>
+      <!--ハンバーガーメニューのアイコン-->
       <div id="hm-icon">
         <a class="menu-trigger" href="#">
           <span></span>
@@ -38,8 +42,17 @@
   $(function() {
     $('.menu-trigger').on('click', function(event) {
       $(this).toggleClass('active');
+      $('#main_hidden').fadeToggle();
       $('#sp-menu').fadeToggle();
-      event.preventDefault();
+      //main_hiddenをクリックするとsp-menuが閉じる
+    	if($('.menu-trigger').hasClass('active')){
+    		$('#main_hidden').on('click',function() {
+      		$('.menu-trigger').removeClass('active');
+      		$('#main_hidden').fadeOut();
+      		$('#sp-menu').fadeOut();
+    	  });
+    	};
+    	event.preventDefault();
     });
   });
 </script>
