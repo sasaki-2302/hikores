@@ -21,6 +21,7 @@ class Member < ApplicationRecord
   has_many :reporters, class_name: "Report", foreign_key: "reporter_id", dependent: :destroy
   has_many :reporteds, class_name: "Report", foreign_key: "reported_id", dependent: :destroy
   validates :name, length: { minimum: 2, maximum: 12 }
+  validates :email, uniqueness: true
 
   has_one_attached :profile_image
 

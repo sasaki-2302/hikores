@@ -11,8 +11,9 @@ class Public::ReportsController < ApplicationController
     @report = Report.new(report_params)
     @report.reporter_id = current_member.id
     @report.reported_id = @member.id
-    if @report.save #保存する
-      redirect_to member_path(@member), notice: "ご報告ありがとうございました。"
+    if @report.save
+      flash[:notice] = "ご報告ありがとうございました。"
+      redirect_to member_path(@member)
     else
       flash[:error] = "必須項目を入力して下さい。"
       redirect_to new_member_report_path(@member)
@@ -33,6 +34,9 @@ class Public::ReportsController < ApplicationController
       redirect_to request.referer
     elsif current_member.id == member.id
       flash[:error] = "自分のアカウントを通報することはできません。"
+      redirect_to request.referer
+    elsif current_member.email == "guest@example.com"
+      flash[:error] = "ゲストアカウントで通報することはできません。"
       redirect_to request.referer
     end
   end

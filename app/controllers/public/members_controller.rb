@@ -59,8 +59,9 @@ class Public::MembersController < ApplicationController
 
   def ensure_guest_member
     @member = Member.find(params[:id])
-    if @member.name == "guest_member"
-      redirect_to root_path , notice: 'ゲストメンバーはプロフィールの編集を行えません。'
+    if @member.email == "guest@example.com"
+      flash[:error] = 'ゲストアカウントはプロフィールの編集を行えません。'
+      redirect_to root_path
     end
   end
 end
