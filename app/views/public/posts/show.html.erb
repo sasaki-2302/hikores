@@ -4,26 +4,29 @@
       <%= render "public/shared/info", member: @post.member %>
     </div>
     <div class="col-md-6">
+      <div class="error"><%= flash[:error] %></div>
       <div class="card">
-        <div class="d-flex justify-content-around mt-3">
-          <div>
-            <%= link_to image_tag(@post.member.get_profile_image, size: '30x30', style:"border-radius: 20px;"), member_path(@post.member.id) %>
-            <%= link_to @post.member.name, member_path(@post.member.id) %>
-          </div>
-          <div>
-            <!--投稿メンバーまたは管理者のみ表示-->
-            <% if @post.member == current_member || admin_signed_in? %>
-              <%= link_to edit_post_path(@post), class: "mx-3" do %>
-                <i class="fas fa-cut"></i>
-              <% end %>
-              <%= link_to @post, method: :delete, remote: true, data: {confirm: "この投稿を削除しますか？"} do %>
-                <i class="far fa-trash-alt"></i>
-              <% end %>
-            <% end %>
-          </div>
-        </div>
         <div class="col-md-12 card-body">
-           <ul class="list-group list-group-flush">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <div class="d-flex justify-content-between mt-3">
+                <div>
+                  <%= link_to image_tag(@post.member.get_profile_image, size: '30x30', style:"border-radius: 20px;"), member_path(@post.member.id) %>
+                  <%= link_to @post.member.name, member_path(@post.member.id) %>
+                </div>
+                <div>
+                  <!--投稿メンバーまたは管理者のみ表示-->
+                  <% if @post.member == current_member || admin_signed_in? %>
+                    <%= link_to edit_post_path(@post), class: "mx-3" do %>
+                      <i class="fas fa-cut"></i>
+                    <% end %>
+                    <%= link_to @post, method: :delete, remote: true, data: {confirm: "この投稿を削除しますか？"} do %>
+                      <i class="far fa-trash-alt"></i>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            </li>
             <li class="list-group-item">
               <!--serch_pathにpref_idとcity_idを渡すことで、都道府県名と市区町村名それぞれの検索結果を表示-->
               <%= link_to @post.prefecture.name, search_path(prefecture_id: @post.prefecture.id) %>

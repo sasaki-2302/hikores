@@ -27,8 +27,11 @@ class Public::ReportsController < ApplicationController
 
   def non_self_report
     member = Member.find(params[:member_id])
-    # 自分の通報ページを表示できないようにする
-    if current_member.id == member.id
+    # 未ログイン時と自分自身の通報ページは表示できないようにする
+    if !member_signed_in? && !admin_signed_in?
+      flash[:error] = "未ログイン時に通報機能は使用できません。"
+      redirect_to request.referer
+    elsif current_member.id == member.id
       flash[:error] = "自分のアカウントを通報することはできません。"
       redirect_to request.referer
     end
