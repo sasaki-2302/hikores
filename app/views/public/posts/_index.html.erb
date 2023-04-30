@@ -38,10 +38,10 @@
 <%= javascript_pack_tag 'jscroll' %>
 <script>
   $(document).on('turbolinks:load', function() {
-    $('.scroll').jscroll({ // 追加したdivのclass名と合わせる
+    $('.scroll').jscroll({ // スクロールで表示される箇所を指定
       contentSelector: '.scroll',
       nextSelector: 'span.next a',  // 次ページリンクのセレクタ
-      loadingHtml: '読み込み中',
+      loadingHtml: '<i class="fas fa-sync-alt fa-lg fa-spin"></i>',
       padding: 5
     });
   });
