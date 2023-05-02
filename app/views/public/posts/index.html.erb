@@ -8,6 +8,10 @@
         <div class="card-header">
           <h4>投稿一覧</h4>
         </div>
+        <p>
+          <%= link_to '新しい順', posts_path(latest: "true") %>
+          <%= link_to '古い順', posts_path(old: "true") %>
+        </p>
         <%= render 'public/posts/index', posts: @posts %>
       </div>
     </div>
