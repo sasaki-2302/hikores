@@ -2,12 +2,15 @@ class Public::PostsController < ApplicationController
   before_action :who_is_sign_in?, only: [:edit, :update]
 
   def index
-    if params[:latest]
-      @posts = Post.latest.page(params[:page]).per(9)
-    elsif params[:old]
+    if params[:old]
       @posts = Post.old.page(params[:page]).per(9)
+    elsif params[:favorite_count]
+      # kaminariの通常の書き方は配列には対応していないためエラーが出る　そのため Kaminari.paginate_array(配列) の記述で回避する必要がある
+      @posts = Kaminari.paginate_array(Post.latest.favorite_count).page(params[:page]).per(9)
+    elsif params[:comment_count]
+      @posts = Kaminari.paginate_array(Post.latest.comment_count).page(params[:page]).per(9)
     else
-      @posts = Post.all.page(params[:page]).per(9)
+      @posts = Post.latest.page(params[:page]).per(9)
     end
   end
 

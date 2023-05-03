@@ -1,15 +1,17 @@
 class Post < ApplicationRecord
   belongs_to :member
-  belongs_to  :prefecture
-  belongs_to  :city
+  belongs_to :prefecture
+  belongs_to :city
   has_many   :comments,   dependent: :destroy
   has_many   :favorites,  dependent: :destroy
 
   validates :title, length: { minimum: 2, maximum: 20 }
   validates :body,  length: { minimum: 10, maximum: 200 }
   # https://qiita.com/kcl215/items/c0222befe4a6b270986a　参照
-  scope :latest, -> {order(created_at: :desc)}
-  scope :old,    -> {order(created_at: :asc)}
+  scope :latest,         -> {order(created_at: :desc)}
+  scope :old,            -> {order(created_at: :asc)}
+  scope :favorite_count, -> {includes(:favorites).sort {|a,b| b.favorites.size <=> a.favorites.size}}
+  scope :comment_count,  -> {includes(:comments).sort {|a,b| b.comments.size <=> a.comments.size}}
 
   def favorited_by?(member)
     favorites.exists?(member_id: member.id)
