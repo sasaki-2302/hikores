@@ -40,15 +40,15 @@
               <%= link_to 'いいねの多い順', search_path(content: @content, favorite_count: "true") %>
               <%= link_to 'コメントの多い順', search_path(content: @content, comment_count: "true") %>
             <% elsif @city != nil %>
-              <%= link_to '新しい順', search_path(prefecture_id: @prefecture) %>
-              <%= link_to '古い順', search_path(prefecture_id: @prefecture, old: "true") %>
-              <%= link_to 'いいねの多い順', search_path(prefecture_id: @prefecture, favorite_count: "true") %>
-              <%= link_to 'コメントの多い順', search_path(prefecture_id: @prefecture, comment_count: "true") %>
-            <% else %>
               <%= link_to '新しい順', search_path(prefecture_id: @prefecture, city_id: @city) %>
               <%= link_to '古い順', search_path(prefecture_id: @prefecture, city_id: @city, old: "true") %>
               <%= link_to 'いいねの多い順', search_path(prefecture_id: @prefecture, city_id: @city, favorite_count: "true") %>
               <%= link_to 'コメントの多い順', search_path(prefecture_id: @prefecture, city_id: @city, comment_count: "true") %>
+            <% else %>
+              <%= link_to '新しい順', search_path(prefecture_id: @prefecture) %>
+              <%= link_to '古い順', search_path(prefecture_id: @prefecture, old: "true") %>
+              <%= link_to 'いいねの多い順', search_path(prefecture_id: @prefecture, favorite_count: "true") %>
+              <%= link_to 'コメントの多い順', search_path(prefecture_id: @prefecture, comment_count: "true") %>
             <% end %>
           </p>
         <%= render 'public/posts/index', posts: @records %>
