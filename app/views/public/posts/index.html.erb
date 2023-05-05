@@ -8,13 +8,34 @@
         <div class="card-header">
           <h4>投稿一覧</h4>
         </div>
-        <p>
-          <%= link_to '新しい順', posts_path %>
-          <%= link_to '古い順', posts_path(old: "true") %>
-          <%= link_to 'いいねの多い順', posts_path(favorite_count: "true") %>
-          <%= link_to 'コメントの多い順', posts_path(comment_count: "true") %>
-        </p>
-        <%= render 'public/posts/index', posts: @posts %>
+        <ul class="nav nav-tabs nav-pills">
+          <li class="nav-item">
+            <a href="#contents1" class="nav-link active" data-toggle="tab">新しい順</a>
+          </li>
+          <li class="nav-item">
+            <a href="#contents2" class="nav-link" data-toggle="tab">古い順</a>
+          </li>
+          <li class="nav-item">
+            <a href="#contents3" class="nav-link" data-toggle="tab">いいねの多い順</a>
+          </li>
+          <li class="nav-item">
+            <a href="#contents4" class="nav-link" data-toggle="tab">コメントの多い順</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div id="contents1" class="tab-pane active">
+            <%= render 'public/posts/index', posts: @posts_latest %>
+          </div>
+          <div id="contents2" class="tab-pane">
+            <%= render 'public/posts/index', posts: @posts_old %>
+          </div>
+          <div id="contents3" class="tab-pane">
+            <%= render 'public/posts/index', posts: @posts_favorite %>
+          </div>
+          <div id="contents4" class="tab-pane">
+            <%= render 'public/posts/index', posts: @posts_comment %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
