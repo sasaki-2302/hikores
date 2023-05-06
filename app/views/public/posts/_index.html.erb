@@ -32,14 +32,15 @@
 </div>
 
 <!--https://toshpit.com/rails-jscroll-infinitescroll/　参照-->
-<%= javascript_pack_tag 'jscroll' %>
 <script>
-  $(document).on('turbolinks:load', function() {
-    $('.scroll').jscroll({ // スクロールで表示される箇所を指定
-      contentSelector: '.scroll',
-      nextSelector: 'span.next a',  // 次ページリンクのセレクタ
-      loadingHtml: '<i class="fas fa-sync-alt fa-lg fa-spin"></i>',
-      padding: 5
+  $(document).on('DOMContentLoaded', function() { // ページ読み込みを待つ
+    $(document).on('turbolinks:load', function() {
+      $('.scroll').jscroll({ // スクロールで表示される箇所を指定
+        contentSelector: '.scroll',
+        nextSelector: 'span.next a',  // 次ページリンクのセレクタ
+        loadingHtml: '<i class="fas fa-sync-alt fa-lg fa-spin"></i>',
+        padding: 5
+      });
     });
   });
 </script>
