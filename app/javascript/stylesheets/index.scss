@@ -14,3 +14,30 @@
   width: 200px;
   margin: 4px;
 }
+
+.tag {
+  border-bottom: 1px solid;
+}
+.tag-item{
+  width: 130px;
+  height: 30px;
+  font-size: 14px;
+  display: inline-block;
+  text-align: center;
+  background-color: #f0ffff;
+  color: #000000;
+  border-style: solid;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+}
+
+.tag-item:hover{
+  text-decoration: none;
+  background-color: #ffffff;
+  color: #000000;
+  border-style: solid;
+  border-color: #000000;
+  border-bottom-style: none;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+}

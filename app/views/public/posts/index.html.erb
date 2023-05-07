@@ -8,11 +8,11 @@
         <div class="card-header">
           <h4>投稿一覧</h4>
         </div>
-        <p>
-          <%= link_to '新しい順', posts_path, class:"tag" %>
-          <%= link_to '古い順', posts_path(old: "true"), class:"tag" %>
-          <%= link_to 'いいねの多い順', posts_path(favorite_count: "true"), class:"tag" %>
-          <%= link_to 'コメントの多い順', posts_path(comment_count: "true"), class:"tag" %>
+        <p class="tag">
+          <%= link_to '投稿の新しい順', posts_path, class:"tag-item" %>
+          <%= link_to '投稿の古い順', posts_path(old: "true"), class:"tag-item" %>
+          <%= link_to 'いいねの多い順', posts_path(favorite_count: "true"), class:"tag-item" %>
+          <%= link_to 'コメントの多い順', posts_path(comment_count: "true"), class:"tag-item" %>
         </p>
         <%= render 'public/posts/index', posts: @posts %>
         </div>
