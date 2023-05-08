@@ -9,10 +9,10 @@
           <h4>投稿一覧</h4>
         </div>
         <p class="tag">
-          <%= link_to '投稿の新しい順', posts_path, class:"tag-item" %>
-          <%= link_to '投稿の古い順', posts_path(old: "true"), class:"tag-item" %>
-          <%= link_to 'いいねの多い順', posts_path(favorite_count: "true"), class:"tag-item" %>
-          <%= link_to 'コメントの多い順', posts_path(comment_count: "true"), class:"tag-item" %>
+          <%= link_to '投稿の新しい順', posts_path, class:"tag-item1" %>
+          <%= link_to '投稿の古い順', posts_path(old: "true"), class:"tag-item2" %>
+          <%= link_to 'いいねの多い順', posts_path(favorite_count: "true"), class:"tag-item3" %>
+          <%= link_to 'コメントの多い順', posts_path(comment_count: "true"), class:"tag-item4" %>
         </p>
         <%= render 'public/posts/index', posts: @posts %>
         </div>

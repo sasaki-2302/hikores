@@ -33,22 +33,22 @@
               </div>
             <% end %>
           </div>
-          <p>
+          <p class="tag">
             <% if @content != nil %>
-              <%= link_to '新しい順', search_path(content: @content) %>
-              <%= link_to '古い順', search_path(content: @content, old: "true") %>
-              <%= link_to 'いいねの多い順', search_path(content: @content, favorite_count: "true") %>
-              <%= link_to 'コメントの多い順', search_path(content: @content, comment_count: "true") %>
+              <%= link_to '新しい順', search_path(content: @content), class:"tag-item1" %>
+              <%= link_to '古い順', search_path(content: @content, old: "true"), class:"tag-item2" %>
+              <%= link_to 'いいねの多い順', search_path(content: @content, favorite_count: "true"), class:"tag-item3" %>
+              <%= link_to 'コメントの多い順', search_path(content: @content, comment_count: "true"), class:"tag-item4" %>
             <% elsif @city != nil %>
-              <%= link_to '新しい順', search_path(prefecture_id: @prefecture, city_id: @city) %>
-              <%= link_to '古い順', search_path(prefecture_id: @prefecture, city_id: @city, old: "true") %>
-              <%= link_to 'いいねの多い順', search_path(prefecture_id: @prefecture, city_id: @city, favorite_count: "true") %>
-              <%= link_to 'コメントの多い順', search_path(prefecture_id: @prefecture, city_id: @city, comment_count: "true") %>
+              <%= link_to '新しい順', search_path(prefecture_id: @prefecture, city_id: @city), class:"tag-item1" %>
+              <%= link_to '古い順', search_path(prefecture_id: @prefecture, city_id: @city, old: "true"), class:"tag-item2" %>
+              <%= link_to 'いいねの多い順', search_path(prefecture_id: @prefecture, city_id: @city, favorite_count: "true"), class:"tag-item3" %>
+              <%= link_to 'コメントの多い順', search_path(prefecture_id: @prefecture, city_id: @city, comment_count: "true"), class:"tag-item4" %>
             <% else %>
-              <%= link_to '新しい順', search_path(prefecture_id: @prefecture) %>
-              <%= link_to '古い順', search_path(prefecture_id: @prefecture, old: "true") %>
-              <%= link_to 'いいねの多い順', search_path(prefecture_id: @prefecture, favorite_count: "true") %>
-              <%= link_to 'コメントの多い順', search_path(prefecture_id: @prefecture, comment_count: "true") %>
+              <%= link_to '新しい順', search_path(prefecture_id: @prefecture), class:"tag-item1" %>
+              <%= link_to '古い順', search_path(prefecture_id: @prefecture, old: "true"), class:"tag-item2" %>
+              <%= link_to 'いいねの多い順', search_path(prefecture_id: @prefecture, favorite_count: "true"), class:"tag-item3" %>
+              <%= link_to 'コメントの多い順', search_path(prefecture_id: @prefecture, comment_count: "true"), class:"tag-item4" %>
             <% end %>
           </p>
         <%= render 'public/posts/index', posts: @records %>

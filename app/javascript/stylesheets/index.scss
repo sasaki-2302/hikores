@@ -18,7 +18,7 @@
 .tag {
   border-bottom: 1px solid;
 }
-.tag-item{
+.tag-item1, .tag-item2, .tag-item3, .tag-item4{
   width: 130px;
   height: 30px;
   font-size: 14px;
@@ -29,15 +29,17 @@
   border-style: solid;
   border-top-left-radius: 7px;
   border-top-right-radius: 7px;
-}
-
-.tag-item:hover{
-  text-decoration: none;
-  background-color: #ffffff;
-  color: #000000;
-  border-style: solid;
-  border-color: #000000;
-  border-bottom-style: none;
-  border-top-left-radius: 7px;
-  border-top-right-radius: 7px;
+  &:hover{
+    text-decoration: none;
+    background-color: #ffffff;
+    color: #000000;
+    border-style: solid;
+    border-color: #000000;
+    border-bottom-style: none;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+  }
+  &:target{
+    background-color: #000000;
+  }
 }
