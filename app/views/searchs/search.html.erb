@@ -33,19 +33,19 @@
               </div>
             <% end %>
           </div>
-          <p class="tag">
+          <p class="tag mt-1">
             <% if @content != nil %>
-              <%= link_to '新しい順', search_path(content: @content), class:"tag-item1" %>
+              <%= link_to '新しい順', search_path(content: @content, latest: "true"), class:"tag-item1" %>
               <%= link_to '古い順', search_path(content: @content, old: "true"), class:"tag-item2" %>
               <%= link_to 'いいねの多い順', search_path(content: @content, favorite_count: "true"), class:"tag-item3" %>
               <%= link_to 'コメントの多い順', search_path(content: @content, comment_count: "true"), class:"tag-item4" %>
             <% elsif @city != nil %>
-              <%= link_to '新しい順', search_path(prefecture_id: @prefecture, city_id: @city), class:"tag-item1" %>
+              <%= link_to '新しい順', search_path(prefecture_id: @prefecture, city_id: @city, latest: "true"), class:"tag-item1" %>
               <%= link_to '古い順', search_path(prefecture_id: @prefecture, city_id: @city, old: "true"), class:"tag-item2" %>
               <%= link_to 'いいねの多い順', search_path(prefecture_id: @prefecture, city_id: @city, favorite_count: "true"), class:"tag-item3" %>
               <%= link_to 'コメントの多い順', search_path(prefecture_id: @prefecture, city_id: @city, comment_count: "true"), class:"tag-item4" %>
             <% else %>
-              <%= link_to '新しい順', search_path(prefecture_id: @prefecture), class:"tag-item1" %>
+              <%= link_to '新しい順', search_path(prefecture_id: @prefecture, latest: "true"), class:"tag-item1" %>
               <%= link_to '古い順', search_path(prefecture_id: @prefecture, old: "true"), class:"tag-item2" %>
               <%= link_to 'いいねの多い順', search_path(prefecture_id: @prefecture, favorite_count: "true"), class:"tag-item3" %>
               <%= link_to 'コメントの多い順', search_path(prefecture_id: @prefecture, comment_count: "true"), class:"tag-item4" %>
@@ -56,3 +56,30 @@
     </div>
   </div>
 </div>
+
+<script>
+  jQuery(function() {
+
+  //URL全体から「?」以降をparamsに格納
+  params = location.href.split("?");
+
+  //URLパラメータが存在した時、URL変更を実施
+  if(params.length>1){
+    //URLパラメータ情報を取得
+    var url = decodeURI(location.search)
+    //URLパラメータが latest だった場合
+    if(url == "?latest=true") {
+      $(".tag-item1").addClass("tag-active");
+    //URLパラメータが old だった場合
+    }else if(url == "?old=true") {
+      $(".tag-item2").addClass("tag-active");
+    //URLパラメータが favorite_count だった場合
+    }else if(url == "?favorite_count=true") {
+      $(".tag-item3").addClass("tag-active");
+    //URLパラメータが comment_count だった場合
+    }else if(url == "?comment_count=true") {
+      $(".tag-item4").addClass("tag-active");
+    }
+  }
+});
+</script>

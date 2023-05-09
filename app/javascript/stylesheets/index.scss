@@ -17,7 +17,9 @@
 
 .tag {
   border-bottom: 1px solid;
+  border-color: #d9dadb;
 }
+
 .tag-item1, .tag-item2, .tag-item3, .tag-item4{
   width: 130px;
   height: 30px;
@@ -31,15 +33,18 @@
   border-top-right-radius: 7px;
   &:hover{
     text-decoration: none;
-    background-color: #ffffff;
-    color: #000000;
-    border-style: solid;
-    border-color: #000000;
+    background-color: #80bbff;
+    color: #ffffff;
     border-bottom-style: none;
+    border-style: solid;
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
   }
-  &:target{
-    background-color: #000000;
-  }
+}
+
+.tag-active{
+  background-color: #ffffff;
+  color: #000000;
+  border-bottom-style: none;
+  pointer-events: none;
 }

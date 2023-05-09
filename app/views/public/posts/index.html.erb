@@ -8,8 +8,8 @@
         <div class="card-header">
           <h4>投稿一覧</h4>
         </div>
-        <p class="tag">
-          <%= link_to '投稿の新しい順', posts_path, class:"tag-item1" %>
+        <p class="tag mt-1">
+          <%= link_to '投稿の新しい順', posts_path(latest: "true"), class:"tag-item1" %>
           <%= link_to '投稿の古い順', posts_path(old: "true"), class:"tag-item2" %>
           <%= link_to 'いいねの多い順', posts_path(favorite_count: "true"), class:"tag-item3" %>
           <%= link_to 'コメントの多い順', posts_path(comment_count: "true"), class:"tag-item4" %>
@@ -20,3 +20,30 @@
     </div>
   </div>
 </div>
+
+<script>
+  jQuery(function() {
+
+    //URL全体から「?」以降をparamsに格納
+    params = location.href.split("?");
+
+    //URLパラメータが存在した時、URL変更を実施
+    if(params.length>1){
+      //URLパラメータ情報を取得
+      var url = decodeURI(location.search)
+      //URLパラメータが latest だった場合
+      if(url == "?latest=true") {
+        $(".tag-item1").addClass("tag-active");
+      //URLパラメータが old だった場合
+      }else if(url == "?old=true") {
+        $(".tag-item2").addClass("tag-active");
+      //URLパラメータが favorite_count だった場合
+      }else if(url == "?favorite_count=true") {
+        $(".tag-item3").addClass("tag-active");
+      //URLパラメータが comment_count だった場合
+      }else if(url == "?comment_count=true") {
+        $(".tag-item4").addClass("tag-active");
+      }
+    }
+  });
+</script>
