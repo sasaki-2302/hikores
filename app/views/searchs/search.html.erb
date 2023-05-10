@@ -60,26 +60,26 @@
 <script>
   jQuery(function() {
 
-  //URL全体から「?」以降をparamsに格納
-  params = location.href.split("?");
+    //URL全体から「?」以降をparamsに格納
+    params = location.href.split("?");
 
-  //URLパラメータが存在した時、URL変更を実施
-  if(params.length>1){
-    //URLパラメータ情報を取得
-    var url = decodeURI(location.search)
-    //URLパラメータが latest だった場合
-    if(url == "?latest=true") {
-      $(".tag-item1").addClass("tag-active");
-    //URLパラメータが old だった場合
-    }else if(url == "?old=true") {
-      $(".tag-item2").addClass("tag-active");
-    //URLパラメータが favorite_count だった場合
-    }else if(url == "?favorite_count=true") {
-      $(".tag-item3").addClass("tag-active");
-    //URLパラメータが comment_count だった場合
-    }else if(url == "?comment_count=true") {
-      $(".tag-item4").addClass("tag-active");
+    //URLパラメータが存在した時、URL変更を実施
+    if(params.length>1){
+      //URLパラメータ情報を取得
+      var url = decodeURI(location.search)
+      //URLパラメータが latest だった場合
+      if(url.includes("?latest=true")) {
+        $(".tag-item1").addClass("tag-active");
+      //URLパラメータが old だった場合
+      }else if(url.includes("?old=true")) {
+        $(".tag-item2").addClass("tag-active");
+      //URLパラメータが favorite_count だった場合
+      }else if(url.includes("?favorite_count=true")) {
+        $(".tag-item3").addClass("tag-active");
+      //URLパラメータが comment_count だった場合
+      }else if(url.includes("?comment_count=true")) {
+        $(".tag-item4").addClass("tag-active");
+      }
     }
-  }
-});
+  });
 </script>
