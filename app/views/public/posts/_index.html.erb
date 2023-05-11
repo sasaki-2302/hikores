@@ -7,8 +7,8 @@
         <div class="card mx-auto" style="width:190px; height:180px;">
           <!--serch_pathにpref_idとcity_idを渡すことで、都道府県名と市区町村名それぞれの検索結果を表示-->
           <div>
-            <%= link_to post.prefecture.name, search_path(prefecture_id: post.prefecture.id) %>
-            <%= link_to post.city.name, search_path(prefecture_id: post.prefecture.id, city_id: post.city.id) %>
+            <%= link_to post.prefecture.name, search_path(prefecture_id: post.prefecture.id, latest: "true") %>
+            <%= link_to post.city.name, search_path(prefecture_id: post.prefecture.id, city_id: post.city.id, latest: "true") %>
           </div>
           <!--タイトルが14文字に以上なら省略-->
           <div class="my-1"><%= link_to post.title.truncate(13), post_path(post.id) %></div>
