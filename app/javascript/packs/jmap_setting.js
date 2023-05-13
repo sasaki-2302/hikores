@@ -69,7 +69,7 @@ $(document).on('turbolinks:load', function() {
         {code : 47, name: "沖縄",   color: "#ffbdbd", hoverColor: "#ffe6e6" }
       ],
       onSelect : function(e,data){
-        location.href = "/search?prefecture_id="+(data.code);
+        location.href = "/search?latest=true&prefecture_id="+(data.code);
       }
     });
   });

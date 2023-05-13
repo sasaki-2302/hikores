@@ -32,16 +32,16 @@
       //URLパラメータ情報を取得
       var url = decodeURI(location.search)
       //URLパラメータが latest だった場合
-      if(url.includes("?latest=true")) {
+      if(url.includes("latest=true")) {
         $(".tag-item1").addClass("tag-active");
       //URLパラメータが old だった場合
-      }else if(url.includes("?old=true")) {
+      }else if(url.includes("old=true")) {
         $(".tag-item2").addClass("tag-active");
       //URLパラメータが favorite_count だった場合
-      }else if(url.includes("?favorite_count=true")) {
+      }else if(url.includes("favorite_count=true")) {
         $(".tag-item3").addClass("tag-active");
       //URLパラメータが comment_count だった場合
-      }else if(url.includes("?comment_count=true")) {
+      }else if(url.includes("comment_count=true")) {
         $(".tag-item4").addClass("tag-active");
       }
     }
