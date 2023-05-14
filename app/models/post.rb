@@ -1,4 +1,6 @@
 class Post < ApplicationRecord
+  is_impressionable
+
   belongs_to :member
   belongs_to :prefecture
   belongs_to :city
