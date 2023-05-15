@@ -3,14 +3,14 @@ class Public::PostsController < ApplicationController
 
   def index
     if params[:old]
-      @posts = Post.old.page(params[:page]).per(9)
+      @posts = Post.old.page(params[:page]).per(12)
     elsif params[:favorite_count]
       # kaminariの通常の書き方は配列には対応していないためエラーが出る　そのため Kaminari.paginate_array(配列) の記述で回避する必要がある
-      @posts = Kaminari.paginate_array(Post.latest.favorite_count).page(params[:page]).per(9)
+      @posts = Kaminari.paginate_array(Post.latest.favorite_count).page(params[:page]).per(12)
     elsif params[:comment_count]
-      @posts = Kaminari.paginate_array(Post.latest.comment_count).page(params[:page]).per(9)
+      @posts = Kaminari.paginate_array(Post.latest.comment_count).page(params[:page]).per(12)
     else
-      @posts = Post.latest.page(params[:page]).per(9)
+      @posts = Post.latest.page(params[:page]).per(12)
     end
   end
 
@@ -29,6 +29,7 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
+    impressionist(@post, nil, unique: [:session_hash])
   end
 
   def edit
