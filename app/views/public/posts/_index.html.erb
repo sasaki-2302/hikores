@@ -15,12 +15,12 @@
               <i class="far fa-eye"></i><%= post.impressionist_count %>
             </div>
           </div>
-          <!--タイトルが14文字に以上なら省略-->
+          <!--タイトルが10文字に以上なら省略-->
           <div class="my-1">
-            <%= link_to post.title.truncate(13), post_path(post.id) %>
+            <%= link_to post.title.truncate(10), post_path(post.id) %>
           </div>
-          <!--投稿内容が62文字に以上なら省略定-->
-          <div><%= post.body.truncate(57) %></div>
+          <!--投稿内容が55文字に以上なら省略定-->
+          <div><%= post.body.truncate(55) %></div>
         </div>
         <!--コメント・いいねを投稿内下部に固定-->
         <div class="d-flex justify-content-between mt-auto mx-1">
