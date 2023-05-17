@@ -9,6 +9,8 @@ class Public::PostsController < ApplicationController
       @posts = Kaminari.paginate_array(Post.latest.favorite_count).page(params[:page]).per(12)
     elsif params[:comment_count]
       @posts = Kaminari.paginate_array(Post.latest.comment_count).page(params[:page]).per(12)
+    elsif params[:pv_count]
+      @posts = Kaminari.paginate_array(Post.latest.pv_count).page(params[:page]).per(12)
     else
       @posts = Post.latest.page(params[:page]).per(12)
     end

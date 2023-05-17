@@ -13,6 +13,7 @@
           <%= link_to '投稿の古い順', posts_path(old: "true"), class:"tag-item2" %>
           <%= link_to 'いいねの多い順', posts_path(favorite_count: "true"), class:"tag-item3" %>
           <%= link_to 'コメントの多い順', posts_path(comment_count: "true"), class:"tag-item4" %>
+          <%= link_to '閲覧数の多い順', posts_path(pv_count: "true"), class:"tag-item5" %>
         </p>
         <%= render 'public/posts/index', posts: @posts %>
         </div>
@@ -43,6 +44,9 @@
       //URLパラメータが comment_count だった場合
       }else if(url.includes("comment_count=true")) {
         $(".tag-item4").addClass("tag-active");
+      //URLパラメータが pv_count だった場合
+      }else if(url.includes("pv_count=true")) {
+        $(".tag-item5").addClass("tag-active");
       }
     }
   });

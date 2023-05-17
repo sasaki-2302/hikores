@@ -14,6 +14,7 @@ class Post < ApplicationRecord
   scope :old,            -> {order(created_at: :asc)}
   scope :favorite_count, -> {includes(:favorites).sort {|a,b| b.favorites.size <=> a.favorites.size}}
   scope :comment_count,  -> {includes(:comments).sort {|a,b| b.comments.size <=> a.comments.size}}
+  scope :pv_count,       -> {includes(:impressions).sort {|a,b| b.impressions.size <=> a.impressions.size}}
 
   def favorited_by?(member)
     favorites.exists?(member_id: member.id)
