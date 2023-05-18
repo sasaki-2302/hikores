@@ -12,6 +12,8 @@ class SearchsController < ApplicationController
       @records = Kaminari.paginate_array(search_result.latest.favorite_count).page(params[:page]).per(12)
     elsif params[:comment_count]
       @records = Kaminari.paginate_array(search_result.latest.comment_count).page(params[:page]).per(12)
+    elsif params[:pv_count]
+      @records = Kaminari.paginate_array(search_result.latest.pv_count).page(params[:page]).per(12)
     else
       @records = search_result.latest.page(params[:page]).per(12)
     end

@@ -39,16 +39,19 @@
               <%= link_to '古い順', search_path(content: @content, old: "true"), class:"tag-item2" %>
               <%= link_to 'いいねの多い順', search_path(content: @content, favorite_count: "true"), class:"tag-item3" %>
               <%= link_to 'コメントの多い順', search_path(content: @content, comment_count: "true"), class:"tag-item4" %>
+              <%= link_to '閲覧数の多い順', search_path(content: @content, pv_count: "true"), class:"tag-item5" %>
             <% elsif @city != nil %>
               <%= link_to '新しい順', search_path(prefecture_id: @prefecture, city_id: @city, latest: "true"), class:"tag-item1" %>
               <%= link_to '古い順', search_path(prefecture_id: @prefecture, city_id: @city, old: "true"), class:"tag-item2" %>
               <%= link_to 'いいねの多い順', search_path(prefecture_id: @prefecture, city_id: @city, favorite_count: "true"), class:"tag-item3" %>
               <%= link_to 'コメントの多い順', search_path(prefecture_id: @prefecture, city_id: @city, comment_count: "true"), class:"tag-item4" %>
+              <%= link_to '閲覧数の多い順', search_path(prefecture_id: @prefecture, city_id: @city, pv_count: "true"), class:"tag-item5" %>
             <% else %>
               <%= link_to '新しい順', search_path(prefecture_id: @prefecture, latest: "true"), class:"tag-item1" %>
               <%= link_to '古い順', search_path(prefecture_id: @prefecture, old: "true"), class:"tag-item2" %>
               <%= link_to 'いいねの多い順', search_path(prefecture_id: @prefecture, favorite_count: "true"), class:"tag-item3" %>
               <%= link_to 'コメントの多い順', search_path(prefecture_id: @prefecture, comment_count: "true"), class:"tag-item4" %>
+              <%= link_to '閲覧数の多い順', search_path(prefecture_id: @prefecture, pv_count: "true"), class:"tag-item5" %>
             <% end %>
           </p>
         <%= render 'public/posts/index', posts: @records %>
@@ -79,6 +82,9 @@
       //URLパラメータが comment_count だった場合
       }else if(url.includes("comment_count=true")) {
         $(".tag-item4").addClass("tag-active");
+      //URLパラメータが comment_count だった場合
+      }else if(url.includes("pv_count=true")) {
+        $(".tag-item5").addClass("tag-active");
       }
     }
   });
