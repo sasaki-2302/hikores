@@ -66,5 +66,8 @@ Post.create!(
     {member_id: Member.first.id, prefecture_id: Prefecture.all[12].id, city_id: City.all[630].id, title: "意外と自然豊か", body: "代々木公園や明治神宮があり、散歩やジョギングに向いている。住宅街に入ると静かな点も良い。" },
     {member_id: Member.first.id, prefecture_id: Prefecture.all[12].id, city_id: City.all[630].id, title: "人が多い", body: "繁華街は観光客が多く人通りが多い。 24時間営業の店もあったりして場所によっては夜中もうるさいことがある。" },
     {member_id: Member.first.id, prefecture_id: Prefecture.all[12].id, city_id: City.all[630].id, title: "韓国好きにはおすすめ", body: "新大久保は日本の韓国と呼ばれ、韓国料理や韓国コスメが手軽に入手できる。" },
+    {member_id: Member.first.id, prefecture_id: Prefecture.all[12].id, city_id: City.all[631].id, title: "歴史的建造物が多い", body: "湯島天神、小石川後楽園、伝通院など、多くの歴史的建造物がある。" },
+    {member_id: Member.first.id, prefecture_id: Prefecture.all[12].id, city_id: City.all[631].id, title: "住民の意識が高い", body: "清掃活動やボランティア活動が盛んで、住みやすい街づくりが行われている。" },
+    {member_id: Member.first.id, prefecture_id: Prefecture.all[12].id, city_id: City.all[631].id, title: "アクセスが便利な場所に住める", body: "東京23区のほぼ中心に位置しているため都心へのアクセスが良い。区内には学校も多く、学生に人気のエリア。" }
   ]
 )

@@ -20,7 +20,7 @@
             <%= link_to post.title.truncate(10), post_path(post.id) %>
           </div>
           <!--投稿内容が55文字に以上なら省略定-->
-          <div><%= post.body.truncate(55) %></div>
+          <div><%= post.body.truncate(50) %></div>
         </div>
         <!--コメント・いいねを投稿内下部に固定-->
         <div class="d-flex justify-content-between mt-auto mx-1">
