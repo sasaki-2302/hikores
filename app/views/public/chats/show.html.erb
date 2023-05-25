@@ -6,19 +6,26 @@
     <div class="col-md-5">
       <div class="card">
         <div class="card-header">
-          <h5 class="text-center",id="room" data-room="<%= @room.id %>" data-member="<%= current_member.id %>"><%= @member.name %>さんとのメッセージ</h5>
+          <h5 class="text-center",id="room" data-room="<%= @room.id %>" data-member="<%= current_member.id %>">
+            <%= image_tag(@member.get_profile_image, size: '30x30', style: "border-radius: 15px;") %>
+            <%= @member.name %>さんとのメッセージ
+          </h5>
         </div>
         <div class="mx-auto my-3" id="chat">
           <% @chats.each do |chat| %>
             <% if chat.member_id == current_member.id %>
-              <div class="d-flex justify-content-end my-2 py-2">
-                <p class="my-auto m-1 px-1" style="background-color:#FFFFFF; border-radius: 4px;"><%= chat.chat %></p>
-                <%= image_tag(current_member.get_profile_image, size: '30x30', style: "border-radius: 15px;") %>
+              <div class="d-flex justify-content-end my-1">
+                <p class="my-auto mx-2 p-1" style="background-color:#e1ffd1; border-radius: 4px;"><%= chat.chat %></p>
+              </div>
+              <div class="chat_time d-flex justify-content-end mx-2">
+                <%= chat.created_at.strftime('%m/%d %H:%M') %>
               </div>
             <% else %>
-              <div class="d-flex justify-content-start my-2 py-2">
-                <%= image_tag(chat.member.get_profile_image, size: '30x30', style: "border-radius: 15px;") %>
-                <p class="my-auto m-1 px-1" style="background-color:#FFFFFF; border-radius: 4px;"><%= chat.chat %></p>
+              <div class="d-flex justify-content-start mt-1">
+                <p class="my-auto mx-2 p-1" style="background-color:#FFFFFF; border-radius: 4px;"><%= chat.chat %></p>
+              </div>
+              <div class="chat_time mx-2">
+                <%= chat.created_at.strftime('%m/%d %H:%M') %>
               </div>
             <% end %>
           <% end %>

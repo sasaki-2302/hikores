@@ -1,3 +1,4 @@
 $('#chat').append("<p style='text-align: right;'><%= @chat.chat %></p>");
+$('#chat').append("<div style='text-align: right;'><%= @chat.created_at.strftime('%m/%d %H:%M') %></div>");
 $('.errors').html("");
 $('input[type=text]').val("");

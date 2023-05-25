@@ -19,8 +19,12 @@
 #chat{
   width: 400px;
   height: 400px;
-  background-color: #9EE9FA;
+  background-color: #cff6ff;
   overflow: auto;
+}
+
+.chat_time{
+  font-size: 4px;
 }
 
 // 自動スクロール時ページネーションを非表示にする
