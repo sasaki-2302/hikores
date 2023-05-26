@@ -38,8 +38,13 @@ class Public::PostsController < ApplicationController
   end
 
   def update
-    @post.update(post_params)
-    redirect_to post_path(@post.id)
+    if @post.update(post_params)
+      flash[:notice] = "投稿を編集しました"
+      redirect_to post_path(@post.id)
+    else
+      flash[:error] = "投稿を編集できませんでした"
+      redirect_to edit_post_path(@post.id)
+    end
   end
 
   def destroy

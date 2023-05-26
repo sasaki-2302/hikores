@@ -4,6 +4,7 @@
       <%= render "public/shared/info", member: @post.member %>
     </div>
     <div class="col-md-6">
+      <div class="notice"><%= flash[:notice] %></div>
       <div class="error"><%= flash[:error] %></div>
       <div class="card">
         <div class="col-md-12 card-body">
