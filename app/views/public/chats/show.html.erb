@@ -15,16 +15,16 @@
           <% @chats.each do |chat| %>
             <% if chat.member_id == current_member.id %>
               <div class="d-flex justify-content-end my-1">
-                <p class="my-auto mx-2 p-1" style="background-color:#e1ffd1; border-radius: 4px;"><%= chat.chat %></p>
+                <p class="chat-my my-auto mx-2 p-1"><%= chat.chat %></p>
               </div>
-              <div class="chat_time d-flex justify-content-end mx-2">
+              <div class="chat-time d-flex justify-content-end mx-2">
                 <%= chat.created_at.strftime('%m/%d %H:%M') %>
               </div>
             <% else %>
               <div class="d-flex justify-content-start mt-1">
-                <p class="my-auto mx-2 p-1" style="background-color:#FFFFFF; border-radius: 4px;"><%= chat.chat %></p>
+                <p class="chat-your my-auto mx-2 p-1"><%= chat.chat %></p>
               </div>
-              <div class="chat_time mx-2">
+              <div class="chat-time mx-2">
                 <%= chat.created_at.strftime('%m/%d %H:%M') %>
               </div>
             <% end %>
@@ -49,15 +49,15 @@
 <!--https://qiita.com/kenta-nishimoto-1111/items/f58342c202d6c752c731　参照-->
 <script>
   window.onload = function() {
-  // ↪︎ windowがロードされた時にアクションを実行するように設定
-  if (document.getElementById("chat")) {
-    // ↪︎ areaのIDがある場合に処理を実行させる（これがないとチャット画面がなくても常にJavaScriptが動いてしまいます）
-    var scrollPosition = document.getElementById("chat").scrollTop;
-    // ↪︎ area要素のスクロールされた時の最も高い場所を取得
-    var scrollHeight = document.getElementById("chat").scrollHeight;
-    // ↪︎ area要素自体の最も高い場所を取得
-    document.getElementById("chat").scrollTop = scrollHeight;
-    // ↪︎ area要素のスクロールされた時の最も高い場所をarea要素自体の最も高い場所として指定してあげる
+    // ↪︎ windowがロードされた時にアクションを実行するように設定
+    if (document.getElementById("chat")) {
+      // ↪︎ areaのIDがある場合に処理を実行させる（これがないとチャット画面がなくても常にJavaScriptが動いてしまう）
+      var scrollPosition = document.getElementById("chat").scrollTop;
+      // ↪︎ area要素のスクロールされた時の最も高い場所を取得
+      var scrollHeight = document.getElementById("chat").scrollHeight;
+      // ↪︎ area要素自体の最も高い場所を取得
+      document.getElementById("chat").scrollTop = scrollHeight;
+      // ↪︎ area要素のスクロールされた時の最も高い場所をarea要素自体の最も高い場所として指定してあげる
+    }
   }
-}
 </script>
