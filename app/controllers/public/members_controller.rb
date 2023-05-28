@@ -17,9 +17,13 @@ class Public::MembersController < ApplicationController
 
   def update
     @member = Member.find(params[:id])
-    @member.update(member_params)
-    flash[:notice] = "情報を更新しました"
-    redirect_to request.referer
+    if @member.update(member_params)
+      flash[:notice] = "情報を更新しました"
+      redirect_to member_path(@member.id)
+    else
+      flash[:error] = "情報を編集できませんでした"
+      redirect_to edit_member_path(@member.id)
+    end
   end
 
   def favorites
