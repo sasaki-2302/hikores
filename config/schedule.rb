@@ -27,7 +27,7 @@ set :environment, rails_env
 # cronのログの吐き出し場所
 # set :output, "#{Rails.root}/log/cron.log"
 
-#10分に一度、data_resetメソッドを実行　ログは生成しないようにする
+#30分に一度、data_resetメソッドを実行　ログは生成しないようにする
 every 30.minute do
   # begin
     runner "Member.data_reset"
