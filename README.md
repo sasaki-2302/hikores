@@ -46,7 +46,7 @@ https://hikores.com
 
 ### テスト仕様書
 - https://docs.google.com/spreadsheets/d/1_w39rZOoccsaaFAm6CxYlpCIhBvmeCPF
-- 
+
 ### AWS構成図
 - https://drive.google.com/file/d/1KZi_I5Ytl5LfVZ5CAM3ur7tnNWjNoeYi/view?usp=sharing
 
