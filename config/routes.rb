@@ -42,7 +42,7 @@ Rails.application.routes.draw do
        get :favorites
       end
     end
-    resources :chats, only: [:create, :show]
+    resources :chats, only: [:create, :show, :destroy]
     get 'about' => 'homes#about', as: 'about'
   end
 end

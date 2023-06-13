@@ -27,6 +27,12 @@ class Public::ChatsController < ApplicationController
     @chat = Chat.new(room_id: @room.id)
   end
 
+  def destroy
+    @chat = Chat.find(params[:id])
+    @chat.destroy
+    redirect_to request.referer
+  end
+
   private
 
   def chat_params

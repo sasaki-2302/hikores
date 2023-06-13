@@ -19,6 +19,9 @@
               </div>
               <div class="chat-time d-flex justify-content-end mx-2">
                 <%= chat.created_at.strftime('%m/%d %H:%M') %>
+                <%= link_to chat_path(chat.id), method: :delete, data: {confirm: "このメッセージを削除しますか？"} do %>
+                  <i class="far fa-trash-alt"></i>
+                <% end %>
               </div>
             <% else %>
               <div class="d-flex justify-content-start mt-1">
