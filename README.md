@@ -1,5 +1,5 @@
 # ひこれす　-引っ越しレスキュー-
-
+https://hikores.com
 ## サイト概要
 ### サイトテーマ
 引っ越し先の地域を決める際の指標になるコミュニティサイト
@@ -46,6 +46,9 @@
 
 ### テスト仕様書
 - https://docs.google.com/spreadsheets/d/1_w39rZOoccsaaFAm6CxYlpCIhBvmeCPF
+- 
+### AWS構成図
+- https://drive.google.com/file/d/1KZi_I5Ytl5LfVZ5CAM3ur7tnNWjNoeYi/view?usp=sharing
 
 ## 開発環境
 - OS：Linux(CentOS)
