@@ -3,9 +3,11 @@
     <div class="info col-md-3 card">
       <%= render "public/shared/info", member: current_member %>
     </div>
-    <div class="col-md-5">
-      <div class="errors text-center">
-        <div class="mb-3" style="font-size:20px; color:#FF0000;"><%= flash[:error] %></div>
+    <div class="col-md-6">
+      <div class="error text-center">
+        <div class="mb-3" style="font-size:20px; color:#FF0000;">
+          <%= flash[:error] %>
+        </div>
         <%= render "public/shared/error_messages", resource: resource %>
       </div>
       <div class="card px-0">
@@ -30,6 +32,7 @@
               <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
             </div>
             <div class="my-2">
+              <%= flash[:recaptcha_error] %>
               <%= recaptcha_tags %>
             </div>
             <%= f.button :type => "submit", style: "background: none;" do %>

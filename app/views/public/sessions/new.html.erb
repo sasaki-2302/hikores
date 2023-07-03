@@ -3,7 +3,7 @@
     <div class="info col-md-3 card mb-2">
       <%= render "public/shared/info", member: current_member %>
     </div>
-    <div class="col-md-5">
+    <div class="col-md-6">
       <div class="error"><%= flash[:error] %></div>
       <div class="card px-0">
         <div class="card-header">
@@ -20,6 +20,7 @@
               <%= f.label:remember_me %><br>
             <% end %>
             <div class="my-2">
+              <%= flash[:recaptcha_error] %>
               <%= recaptcha_tags %>
             </div>
             <%= f.button :type => "submit", style: "background: none;" do %>
