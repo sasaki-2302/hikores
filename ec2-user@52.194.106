@@ -1,0 +1,6 @@
+DB_USERNAME="root"
+DB_PASSWORD="kaeru0909"
+DB_HOST="rds-mysql-server.cvr3gxx7lcck.ap-northeast-1.rds.amazonaws.com"
+DB_DATABASE="hikores"
+RECAPTCHA_SITE_KEY = 6LccY7cmAAAAAKJHdZgCTuCOndGcUPWUFynLdXiX
+RECAPTCHA_SECRET_KEY = 6LccY7cmAAAAAGZVkdSdS2xEKgb0YJyEJ5D1M_PS
