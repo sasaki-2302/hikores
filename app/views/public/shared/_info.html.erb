@@ -5,10 +5,13 @@
       <%= link_to "ログアウトする", destroy_member_session_path, method: :delete %>
     </div>
     <div class="my-4">
-      <%= link_to member.get_profile_image, "data-lightbox": member.get_profile_image do %>
-        <%= image_tag member.get_profile_image, class:"img"%>
+      <% if member.get_profile_image == "no_image.jpg" %>
+        <%= image_tag member.get_profile_image, class:"img" %><br>
+      <% else %>
+        <%= link_to member.get_profile_image, "data-lightbox": member.get_profile_image do %>
+          <%= image_tag member.get_profile_image, class:"img" %><br>
+        <% end %>
       <% end %>
-      <!--<%= link_to image_tag(member.get_profile_image, size: '70x70', style: "border-radius: 35px;"), member_path(member.id) %><br>-->
       <%= link_to member.name, member_path(member.id) %>
     </div>
     <div class="d-flex justify-content-center">
