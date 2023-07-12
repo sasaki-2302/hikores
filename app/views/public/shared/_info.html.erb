@@ -5,13 +5,7 @@
       <%= link_to "ログアウトする", destroy_member_session_path, method: :delete %>
     </div>
     <div class="my-4">
-      <% if member.get_profile_image == "no_image.jpg" %>
-        <%= image_tag member.get_profile_image, class:"img" %><br>
-      <% else %>
-        <%= link_to member.get_profile_image, "data-lightbox": member.get_profile_image do %>
-          <%= image_tag member.get_profile_image, class:"img" %><br>
-        <% end %>
-      <% end %>
+      <%= render "public/shared/image", member: member %>
       <%= link_to member.name, member_path(member.id) %>
     </div>
     <div class="d-flex justify-content-center">

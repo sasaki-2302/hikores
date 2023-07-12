@@ -1,0 +1,7 @@
+<% if member.get_profile_image == "no_image.jpg" %>
+  <%= image_tag member.get_profile_image, class:"img" %><br>
+<% else %>
+  <%= link_to member.get_profile_image, "data-lightbox": member.get_profile_image do %>
+    <%= image_tag member.get_profile_image, class:"img" %><br>
+  <% end %>
+<% end %>
