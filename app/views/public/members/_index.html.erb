@@ -11,7 +11,7 @@
   <tbody>
     <% members.each do |member| %>
       <tr>
-        <td><%= link_to image_tag(member.get_profile_image, size: '50x50', style: "border-radius: 25px;"), member_path(member.id) %></td>
+        <td><%= render "public/shared/image", member: member %></td>
         <td><%= link_to member.name, member_path(member.id) %></td>
         <td><%= link_to "フォロー: " + member.followings.count.to_s, member_followings_path(member.id) %></td>
         <td><%= link_to "フォロワー: " + member.followers.count.to_s, member_followers_path(member.id) %></td>
