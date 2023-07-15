@@ -11,10 +11,10 @@
   <tbody>
     <% members.each do |member| %>
       <tr>
-        <td><%= render "public/shared/image", member: member %></td>
-        <td><%= link_to member.name, member_path(member.id) %></td>
-        <td><%= link_to "フォロー: " + member.followings.count.to_s, member_followings_path(member.id) %></td>
-        <td><%= link_to "フォロワー: " + member.followers.count.to_s, member_followers_path(member.id) %></td>
+        <td class="text-center"><%= render "public/shared/image", member: member %></td>
+        <td class="align-middle"><%= link_to member.name, member_path(member.id) %></td>
+        <td class="align-middle"><%= link_to "フォロー: " + member.followings.count.to_s, member_followings_path(member.id) %></td>
+        <td class="align-middle"><%= link_to "フォロワー: " + member.followers.count.to_s, member_followers_path(member.id) %></td>
       </tr>
     <% end %>
   </tbody>
