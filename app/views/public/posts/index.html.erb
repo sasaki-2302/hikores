@@ -4,6 +4,8 @@
       <%= render "public/shared/info", member: current_member %>
     </div>
     <div class="col-md-8">
+      <div class="notice"><%= flash[:notice] %></div>
+      <div class="error"><%= flash[:error] %></div>
       <div class="card px-0">
         <div class="card-header">
           <h4>投稿一覧</h4>
